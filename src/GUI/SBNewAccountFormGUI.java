@@ -7,8 +7,10 @@ package GUI;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 /**
  *
@@ -16,6 +18,48 @@ import javafx.scene.layout.GridPane;
  */
 public class SBNewAccountFormGUI extends GridPane 
 {
+
+    /**
+     * @return the RButtonhbox
+     */
+    public HBox getRButtonhbox() {
+        return RButtonhbox;
+    }
+
+    /**
+     * @param RButtonhbox the RButtonhbox to set
+     */
+    public void setRButtonhbox(HBox RButtonhbox) {
+        this.RButtonhbox = RButtonhbox;
+    }
+
+    /**
+     * @return the MButton
+     */
+    public RadioButton getMButton() {
+        return MButton;
+    }
+
+    /**
+     * @param MButton the MButton to set
+     */
+    public void setMButton(RadioButton MButton) {
+        this.MButton = MButton;
+    }
+
+    /**
+     * @return the FButton
+     */
+    public RadioButton getFButton() {
+        return FButton;
+    }
+
+    /**
+     * @param FButton the FButton to set
+     */
+    public void setFButton(RadioButton FButton) {
+        this.FButton = FButton;
+    }
 
     /**
      * @return the exitBTN
@@ -138,17 +182,26 @@ public class SBNewAccountFormGUI extends GridPane
     private Label fname = new Label ("First Name:");
     private Label lname = new Label ("Last Name:");
      private Label email = new Label ("Email Address:");
+    
+      private RadioButton MButton = new RadioButton("Male");
+    private RadioButton FButton = new RadioButton ("Female");
+     
+     
      private TextField fnameTF = new TextField();
     private TextField lnameTF = new TextField();
     private TextField emailTF = new TextField();
+            private HBox RButtonhbox = new HBox();
     public SBNewAccountFormGUI()
     {
-        this.addRow(0,btn1);
-        this.addRow(1,exitBTN);
+            this.setStyle("-fx-background-color: #C0C0C0;");
+        RButtonhbox.getChildren().addAll(MButton,FButton);
+   
         this.addRow(2,fname,fnameTF);
         this.addRow(3,lname,lnameTF);
         this.addRow(4,email,emailTF);
-    
+        this.addRow(5, RButtonhbox);
+         this.addRow(6,btn1);
+        this.addRow(7,exitBTN);
          
 		
     }

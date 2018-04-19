@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 public class SBMain extends Application {
     Stage window;
     Scene scene2;
+    Scene scene3;
     @Override
     public void start(Stage primaryStage) {
      window = primaryStage;
@@ -40,14 +41,16 @@ public class SBMain extends Application {
        
       SBController sc = new SBController(mgui,sdmodel,sblogingui,sbnafGUI);
        
-		SBLoginGUI lgui = new SBLoginGUI();
-		Scene scene = new Scene(lgui, 600, 500,Color.BLUE);
-                scene2 = new Scene(sbnafGUI,250,600,Color.BLUE);
-            
 		
-	        lgui.getCreateAccountBTN().setOnAction(e -> window.setScene(scene2));
+		Scene scene = new Scene(sblogingui, 1000, 500,Color.BLUE);
+                scene2 = new Scene(sbnafGUI,250,600,Color.BLUE);
+                scene3 = new Scene(mgui,1000,1000);
+                
+		
+	        sblogingui.getCreateAccountBTN().setOnAction(e -> window.setScene(scene2));
+                sblogingui.getLoginBTN().setOnAction(e -> window.setScene(scene3));
                 sbnafGUI.getExitBTN().setOnAction(e -> window.setScene(scene));
-      
+                mgui.getLogoutBTN().setOnAction(e -> window.setScene(scene));
         
         primaryStage.setTitle("Study Buddy");
       

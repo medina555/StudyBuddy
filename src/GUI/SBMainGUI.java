@@ -5,11 +5,20 @@
  */
 package GUI;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  *
@@ -18,131 +27,290 @@ import javafx.scene.layout.GridPane;
 public class SBMainGUI extends GridPane{
 
     /**
-     * @return the fname
+     * @return the DoneBTN
      */
-    public Label getFname() {
-        return fname;
+    public Button getDoneBTN() {
+        return DoneBTN;
     }
 
     /**
-     * @param fname the fname to set
+     * @param DoneBTN the DoneBTN to set
      */
-    public void setFname(Label fname) {
-        this.fname = fname;
+    public void setDoneBTN(Button DoneBTN) {
+        this.DoneBTN = DoneBTN;
     }
 
     /**
-     * @return the lname
+     * @return the AddFriendSLabel
      */
-    public Label getLname() {
-        return lname;
+    public Label getAddFriendSLabel() {
+        return AddFriendSLabel;
     }
 
     /**
-     * @param lname the lname to set
+     * @param AddFriendSLabel the AddFriendSLabel to set
      */
-    public void setLname(Label lname) {
-        this.lname = lname;
+    public void setAddFriendSLabel(Label AddFriendSLabel) {
+        this.AddFriendSLabel = AddFriendSLabel;
     }
 
     /**
-     * @return the id
+     * @return the FriendSearchBTN
      */
-    public Label getmyId() {
-        return id;
+    public Button getFriendSearchBTN() {
+        return FriendSearchBTN;
     }
 
     /**
-     * @param id the id to set
+     * @param FriendSearchBTN the FriendSearchBTN to set
      */
-    public void setId(Label id) {
-        this.id = id;
+    public void setFriendSearchBTN(Button FriendSearchBTN) {
+        this.FriendSearchBTN = FriendSearchBTN;
     }
 
     /**
-     * @return the fnameTF
+     * @return the NewFriendLBL
      */
-    public TextField getFnameTF() {
-        return fnameTF;
+    public Label getNewFriendLBL() {
+        return NewFriendLBL;
     }
 
     /**
-     * @param fnameTF the fnameTF to set
+     * @param NewFriendLBL the NewFriendLBL to set
      */
-    public void setFnameTF(TextField fnameTF) {
-        this.fnameTF = fnameTF;
+    public void setNewFriendLBL(Label NewFriendLBL) {
+        this.NewFriendLBL = NewFriendLBL;
     }
 
     /**
-     * @return the lnameTF
+     * @return the NewFriendTF
      */
-    public TextField getLnameTF() {
-        return lnameTF;
+    public TextField getNewFriendTF() {
+        return NewFriendTF;
     }
 
     /**
-     * @param lnameTF the lnameTF to set
+     * @param NewFriendTF the NewFriendTF to set
      */
-    public void setLnameTF(TextField lnameTF) {
-        this.lnameTF = lnameTF;
+    public void setNewFriendTF(TextField NewFriendTF) {
+        this.NewFriendTF = NewFriendTF;
     }
 
     /**
-     * @return the idTF
+     * @return the DisplaySessionTA
      */
-    public TextField getIdTF() {
-        return idTF;
+    public TextArea getDisplaySessionTA() {
+        return DisplaySessionTA;
     }
 
     /**
-     * @param idTF the idTF to set
+     * @param DisplaySessionTA the DisplaySessionTA to set
      */
-    public void setIdTF(TextField idTF) {
-        this.idTF = idTF;
+    public void setDisplaySessionTA(TextArea DisplaySessionTA) {
+        this.DisplaySessionTA = DisplaySessionTA;
     }
 
     /**
-     * @return the btn1
+     * @return the CreateAppBTN
      */
-    public Button getBtn1() {
-        return btn1;
+    public Button getCreateAppBTN() {
+        return CreateAppBTN;
     }
 
     /**
-     * @param btn1 the btn1 to set
+     * @param CreateAppBTN the CreateAppBTN to set
      */
-    public void setBtn1(Button btn1) {
-        this.btn1 = btn1;
+    public void setCreateAppBTN(Button CreateAppBTN) {
+        this.CreateAppBTN = CreateAppBTN;
     }
 
     /**
-     * @return the btn2
+     * @return the LogoutBTN
      */
-    public Button getBtn2() {
-        return btn2;
+    public Button getLogoutBTN() {
+        return LogoutBTN;
     }
 
     /**
-     * @param btn2 the btn2 to set
+     * @param LogoutBTN the LogoutBTN to set
      */
-    public void setBtn2(Button btn2) {
-        this.btn2 = btn2;
+    public void setLogoutBTN(Button LogoutBTN) {
+        this.LogoutBTN = LogoutBTN;
     }
-    private Button btn1 = new Button("print data");
-    private Button btn2 = new Button("store data");
-    private Label fname = new Label ("First Name");
-    private Label lname = new Label ("Last Name");
-     private Label id = new Label ("ID Number");
-     private TextField fnameTF = new TextField();
-    private TextField lnameTF = new TextField();
-    private TextField idTF = new TextField();
+
+    /**
+     * @return the UploadFileBTN
+     */
+    public Button getUploadFileBTN() {
+        return UploadFileBTN;
+    }
+
+    /**
+     * @param UploadFileBTN the UploadFileBTN to set
+     */
+    public void setUploadFileBTN(Button UploadFileBTN) {
+        this.UploadFileBTN = UploadFileBTN;
+    }
+
+    /**
+     * @return the WelcomeLBL
+     */
+    public Label getWelcomeLBL() {
+        return WelcomeLBL;
+    }
+
+    /**
+     * @param WelcomeLBL the WelcomeLBL to set
+     */
+    public void setWelcomeLBL(Label WelcomeLBL) {
+        this.WelcomeLBL = WelcomeLBL;
+    }
+
+    /**
+     * @return the Friends
+     */
+    public Label getFriends() {
+        return Friends;
+    }
+
+    /**
+     * @param Friends the Friends to set
+     */
+    public void setFriends(Label Friends) {
+        this.Friends = Friends;
+    }
+
+    /**
+     * @return the Session
+     */
+    public Label getSession() {
+        return Session;
+    }
+
+    /**
+     * @param Session the Session to set
+     */
+    public void setSession(Label Session) {
+        this.Session = Session;
+    }
+
+    /**
+     * @return the OnlineSes
+     */
+    public Label getOnlineSes() {
+        return OnlineSes;
+    }
+
+    /**
+     * @param OnlineSes the OnlineSes to set
+     */
+    public void setOnlineSes(Label OnlineSes) {
+        this.OnlineSes = OnlineSes;
+    }
+
+    /**
+     * @return the DisplayFriendTA
+     */
+    public TextArea getDisplayFriendTA() {
+        return DisplayFriendTA;
+    }
+
+    /**
+     * @param DisplayFriendTA the DisplayFriendTA to set
+     */
+    public void setDisplayFriendTA(TextArea DisplayFriendTA) {
+        this.DisplayFriendTA = DisplayFriendTA;
+    }
+
+    /**
+     * @return the AddFriendBTN
+     */
+    public Button getAddFriendBTN() {
+        return AddFriendBTN;
+    }
+
+    /**
+     * @param AddFriendBTN the AddFriendBTN to set
+     */
+    public void setAddFriendBTN(Button AddFriendBTN) {
+        this.AddFriendBTN = AddFriendBTN;
+    }
+
+    /**
+     * @return the HideFriendBTN
+     */
+    public Button getHideFriendBTN() {
+        return HideFriendBTN;
+    }
+
+    /**
+     * @param HideFriendBTN the HideFriendBTN to set
+     */
+    public void setHideFriendBTN(Button HideFriendBTN) {
+        this.HideFriendBTN = HideFriendBTN;
+    }
+
+   
+
+
+
+ 
+    private Button FriendSearchBTN= new Button("Friend Search ");
+    private Button AddFriendBTN = new Button("Add Friend ");
+    private Button HideFriendBTN = new Button("Hide Friends");
+    private Button CreateAppBTN = new Button ("Create New Appointment");
+    private Button LogoutBTN = new Button ("Logout");
+    private Button UploadFileBTN = new Button ("Upload File");
+    private Button DoneBTN = new Button ("Done");
+    
+    
+      private Label NewFriendLBL= new Label("Please Enter Username of Friend");
+      private TextField NewFriendTF = new TextField();
+      
+    
+    
+    private Label WelcomeLBL = new Label ("Welcome Student!!");
+    private Label Friends = new Label ("Friends");
+    private Label Session = new Label ("Study Session Appointments");
+    private Label OnlineSes = new Label ("Create New Online Session");
+    private Label AddFriendSLabel = new Label ("Request Sent");
+    
+    
+    private TextArea DisplayFriendTA = new TextArea();
+    private TextArea DisplaySessionTA = new TextArea();
+  ImageView iv = new ImageView();
+   Image image = new Image("appointment.png");
+  
+  
     public SBMainGUI()
-    {
-        this.addRow(0,btn1);
-        this.addRow(1,btn2);
-        this.addRow(2,fname,fnameTF);
-        this.addRow(3,lname,lnameTF);
-        this.addRow(4,id,idTF);
+    {   this.setStyle("-fx-background-color: #CCFFFF");
+           Friends.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
+       Session.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
+        WelcomeLBL.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 26));
+        iv.setImage(image);
+        iv.setFitHeight(20);
+        iv.setFitWidth(20);
+        DisplayFriendTA.setMaxWidth(50);
+        DisplayFriendTA.setMaxHeight(50);
+        Friends.setPadding(new Insets(0,0,0,0));
+        Session.setAlignment(Pos.TOP_RIGHT);
+        WelcomeLBL.setPadding(new Insets(10,10,10,200));
+        DisplaySessionTA.setMaxWidth(300);
+        DisplaySessionTA.setMaxHeight(200);
+       
+      
+        Session.setPadding(new Insets(10, 10, 10, 10));
+        Session.setGraphic(iv);
+        this.add(WelcomeLBL,3,0);
+        this.add(Session,7,0);
+     
+        this.add(Friends,1,1);
+        this.add(DisplayFriendTA,1,2);
+        this.add( FriendSearchBTN,1,3);
+        this.add(DisplaySessionTA,7,1);
+        this.add(CreateAppBTN,7,2);
+        this.add(UploadFileBTN, 6,4);
+        this.add(LogoutBTN,8,0);
     
          
 		

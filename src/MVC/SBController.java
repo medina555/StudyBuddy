@@ -11,6 +11,7 @@ import DATAMODEL.StudentDataModel;
 import GUI.SBLoginGUI;
 import GUI.SBMainGUI;
 import GUI.SBNewAccountFormGUI;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +24,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -33,7 +37,7 @@ public class SBController {
     
    SBMainGUI mGUI;
    StudentDataModel sdm;
-   SBLoginGUI lGUI = new SBLoginGUI();
+   SBLoginGUI lGUI ;
    SBNewAccountFormGUI snafGUI;
    
      Alert errorAlert = new Alert(AlertType.ERROR);
@@ -48,7 +52,7 @@ public class SBController {
     
     public void attachHandlers()
         {
-           mGUI.getBtn1().setOnAction(
+           mGUI.getHideFriendBTN().setOnAction(
                    
                     new EventHandler<ActionEvent>()
          {
@@ -78,35 +82,22 @@ public class SBController {
            
            
            
-                    mGUI.getBtn2().setOnAction(new EventHandler<ActionEvent>()
+                   lGUI.getLoginBTN().setOnAction(new EventHandler<ActionEvent>()
          {
              @Override
              public void handle (ActionEvent event)
-             { int idnum = 0; 
-                 Database mydb = sdm.getMydb();
-                 ArrayList<Student> stulist1 = sdm.getStulist();
-                 String firstname = mGUI.getFnameTF().getText();
-                 String lastname = mGUI.getLnameTF().getText();
-                 String email = mGUI.getIdTF().getText();
+             { 
+                
+                
                 
                  
-                 Student currentStudent = new Student(firstname,lastname,email);
-                 sdm.setStudent(currentStudent);
-                
-               
-                 try {   
-                      Connection conn = mydb.getConn();
-                      PreparedStatement mystmt = conn.prepareStatement("INSERT into students VALUES(?,?,?)");
-                      mystmt.setString(1, stulist1.get(0).getFirstname());
-                      mystmt.setString(2, stulist1.get(0).getLastname());
-                      mystmt.setString(3, stulist1.get(0).getEmail());
-                
-                     mystmt.executeUpdate();
-                 } catch (SQLException ex) {
-                     Logger.getLogger(SBController.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-                 catch(NumberFormatException ex){}
-                     
+                  Alert errorAlert = new Alert(AlertType.INFORMATION);
+                    errorAlert.setHeaderText("LOGIN SUCESSFULLY");
+                    errorAlert.setContentText("WELCOME " + lGUI.getUserNameTF().getText());
+                        
+                    errorAlert.showAndWait();
+        
+                    
              
                 
              }
@@ -131,7 +122,7 @@ public class SBController {
                  {
                     Alert errorAlert = new Alert(AlertType.ERROR);
                     errorAlert.setHeaderText("INVALID USERNAME");
-                    errorAlert.setContentText("Username must be between 2 and 25 characters");
+                    errorAlert.setContentText("Username must not be blank!!");
                         
                     errorAlert.showAndWait();
                 
@@ -144,7 +135,7 @@ public class SBController {
                  {
                     Alert errorAlert = new Alert(AlertType.ERROR);
                     errorAlert.setHeaderText("INVALID PASSWORD");
-                    errorAlert.setContentText("Password must be between 2 and 25 characters");
+                    errorAlert.setContentText("Password must not be blank!!!");
                         
                     errorAlert.showAndWait();
                 
@@ -176,8 +167,88 @@ public class SBController {
          } 
              );
            
+               mGUI.getUploadFileBTN().setOnAction(
+                   
+                    new EventHandler<ActionEvent>()
+         {
+             @Override
+             public void handle (ActionEvent event)
+             {
+                  FileChooser chooser = new FileChooser();
+    chooser.setTitle("Open File");
+    File file = chooser.showOpenDialog(new Stage());
+             }
+         }
+                            );
            
+               
+               
+                             mGUI.getFriendSearchBTN().setOnAction(
+                   
+                    new EventHandler<ActionEvent>()
+         {
+             @Override
+             public void handle (ActionEvent event)
+             {
+                     mGUI.getChildren().remove(mGUI.getFriendSearchBTN()); 
+                     
+                     Label nflabel = new Label("A Request was sent to " + mGUI.getNewFriendTF().getText());
+                    
+                        mGUI.add(mGUI.getNewFriendLBL(), 3, 1);
+                     mGUI.add(mGUI.getNewFriendTF(), 3, 2);
+                     mGUI.add(mGUI.getAddFriendBTN(), 3, 3);
+                     
+                     
+                     
+             }
+         }
+                            );
            
+               
+               
+                  
+                        mGUI.getAddFriendBTN().setOnAction(
+                   
+                    new EventHandler<ActionEvent>()
+         {
+             @Override
+             public void handle (ActionEvent event)
+             {
+                      mGUI.getChildren().remove(mGUI.getAddFriendBTN());
+                       mGUI.getChildren().remove(mGUI.getNewFriendTF());
+               
+                     mGUI.add(mGUI.getAddFriendSLabel(),3,3);
+                     mGUI.add(mGUI.getDoneBTN(), 4,3);
+                  
+;
+             }
+         }
+                            );
+               
+               
+               
+                               mGUI.getDoneBTN().setOnAction(
+                   
+                    new EventHandler<ActionEvent>()
+         {
+             @Override
+             public void handle (ActionEvent event)
+             {
+                      mGUI.getChildren().remove(mGUI.getDoneBTN());
+                       mGUI.getChildren().remove(mGUI.getAddFriendSLabel());
+                               
+              
+                    mGUI.add( mGUI.getFriendSearchBTN(),1,3);
+;
+             }
+         }
+                            ); 
+               
+               
+               
+               
+               
+               
            
            
            

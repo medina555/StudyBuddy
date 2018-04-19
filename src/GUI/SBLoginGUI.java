@@ -27,46 +27,19 @@ import javafx.scene.text.FontWeight;
 public class SBLoginGUI extends GridPane {
 
     /**
-     * @return the UNErrorLabel
+     * @return the ForgotPWBTN
      */
-    public Label getUNErrorLabel() {
-        return UNErrorLabel;
+    public Button getForgotPWBTN() {
+        return ForgotPWBTN;
     }
 
     /**
-     * @param UNErrorLabel the UNErrorLabel to set
+     * @param ForgotPWBTN the ForgotPWBTN to set
      */
-    public void setUNErrorLabel(Label UNErrorLabel) {
-        this.UNErrorLabel = UNErrorLabel;
+    public void setForgotPWBTN(Button ForgotPWBTN) {
+        this.ForgotPWBTN = ForgotPWBTN;
     }
 
-    /**
-     * @return the PWErrorLabel
-     */
-    public Label getPWErrorLabel() {
-        return PWErrorLabel;
-    }
-
-    /**
-     * @param PWErrorLabel the PWErrorLabel to set
-     */
-    public void setPWErrorLabel(Label PWErrorLabel) {
-        this.PWErrorLabel = PWErrorLabel;
-    }
-
-    /**
-     * @return the ALLErrorLabel
-     */
-    public Label getALLErrorLabel() {
-        return ALLErrorLabel;
-    }
-
-    /**
-     * @param ALLErrorLabel the ALLErrorLabel to set
-     */
-    public void setALLErrorLabel(Label ALLErrorLabel) {
-        this.ALLErrorLabel = ALLErrorLabel;
-    }
 
     /**
      * @return the Title
@@ -210,6 +183,8 @@ public class SBLoginGUI extends GridPane {
   
     private Button CreateAccountBTN = new Button ("Create Account");
     private Button LoginBTN = new Button ("Login");
+    private Button ForgotPWBTN = new Button ("Forgot Password?");
+    
     private Label UserNameLBL = new Label("Username:");
     private Label PassWordLBL = new Label ("Password:");
     private TextField UserNameTF = new TextField();
@@ -218,9 +193,7 @@ public class SBLoginGUI extends GridPane {
     private HBox ButtonHB = new HBox();
     private Label Title = new Label ("Welcome to Study Buddy!");
     private Label CopyWrite = new Label ("Omnibus Inc " + "\u00a9");
-    private Label UNErrorLabel= new Label ("Please Enter a username!!");
-    private Label PWErrorLabel= new Label ("Please Enter a password!!");
-    private Label ALLErrorLabel= new Label ("Please Enter a username and password!!");
+
     
     
     ImageView iv = new ImageView();
@@ -229,6 +202,7 @@ public class SBLoginGUI extends GridPane {
     
     public SBLoginGUI()
     {
+        
      this.setStyle("-fx-background-color: #C0C0C0;");
      iv.setImage(image);
      iv.setFitHeight(100);
@@ -247,8 +221,6 @@ public class SBLoginGUI extends GridPane {
         this.add(CopyWrite,4,4);
     }
 
-    public Object getPassWordTF() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     
 }
