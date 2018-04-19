@@ -1,4 +1,7 @@
-### Java ###
+/build
+/nbproject
+/test
+
 # Compiled class file
 .class
 
