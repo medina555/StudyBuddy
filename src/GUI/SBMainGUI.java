@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -25,6 +26,20 @@ import javafx.scene.text.FontWeight;
  * @author Andrew
  */
 public class SBMainGUI extends GridPane{
+
+    /**
+     * @return the date
+     */
+    public DatePicker getDate() {
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(DatePicker date) {
+        this.date = date;
+    }
 
     /**
      * @return the DoneBTN
@@ -253,8 +268,8 @@ public class SBMainGUI extends GridPane{
    
 
 
-
- 
+   private DatePicker date = new DatePicker();
+   
     private Button FriendSearchBTN= new Button("Friend Search ");
     private Button AddFriendBTN = new Button("Add Friend ");
     private Button HideFriendBTN = new Button("Hide Friends");
@@ -283,7 +298,11 @@ public class SBMainGUI extends GridPane{
   
   
     public SBMainGUI()
-    {   this.setStyle("-fx-background-color: #CCFFFF");
+            
+            
+    {  
+        date.setPromptText("Appointment Date");
+        this.setStyle("-fx-background-color: #CCFFFF");
            Friends.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
        Session.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
         WelcomeLBL.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 26));
@@ -309,6 +328,7 @@ public class SBMainGUI extends GridPane{
         this.add( FriendSearchBTN,1,3);
         this.add(DisplaySessionTA,7,1);
         this.add(CreateAppBTN,7,2);
+        this.add(date,7,3);
         this.add(UploadFileBTN, 6,4);
         this.add(LogoutBTN,8,0);
     
