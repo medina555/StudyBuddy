@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -25,9 +26,15 @@ import javafx.stage.Stage;
  * @author Andrew
  */
 public class SBMain extends Application {
-    Stage window;
+    
+   
+   public Stage window;
     Scene scene2;
     Scene scene3;
+     public SBMain()
+     {
+         
+     };
     @Override
     public void start(Stage primaryStage) {
      window = primaryStage;
@@ -41,16 +48,17 @@ public class SBMain extends Application {
        
       SBController sc = new SBController(mgui,sdmodel,sblogingui,sbnafGUI);
        
-		
+		sc.setPrimaryStage(window);
+               
+                
+               
+             
 		Scene scene = new Scene(sblogingui, 1000, 500,Color.BLUE);
-                scene2 = new Scene(sbnafGUI,250,600,Color.BLUE);
-                scene3 = new Scene(mgui,1000,1000);
+ 
+              
                 
 		
-	        sblogingui.getCreateAccountBTN().setOnAction(e -> window.setScene(scene2));
-                sblogingui.getLoginBTN().setOnAction(e -> window.setScene(scene3));
-                sbnafGUI.getExitBTN().setOnAction(e -> window.setScene(scene));
-                mgui.getLogoutBTN().setOnAction(e -> window.setScene(scene));
+	 
         
         primaryStage.setTitle("Study Buddy");
       

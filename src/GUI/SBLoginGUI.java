@@ -9,6 +9,7 @@ package GUI;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -25,6 +26,34 @@ import javafx.scene.text.FontWeight;
  * @author Andrew
  */
 public class SBLoginGUI extends GridPane {
+
+    /**
+     * @return the SchoolBox
+     */
+    public ChoiceBox<String> getSchoolBox() {
+        return SchoolBox;
+    }
+
+    /**
+     * @param SchoolBox the SchoolBox to set
+     */
+    public void setSchoolBox(ChoiceBox<String> SchoolBox) {
+        this.SchoolBox = SchoolBox;
+    }
+
+    /**
+     * @return the SchoolLBL
+     */
+    public Label getSchoolLBL() {
+        return SchoolLBL;
+    }
+
+    /**
+     * @param SchoolLBL the SchoolLBL to set
+     */
+    public void setSchoolLBL(Label SchoolLBL) {
+        this.SchoolLBL = SchoolLBL;
+    }
 
     /**
      * @return the ForgotPWBTN
@@ -187,6 +216,7 @@ public class SBLoginGUI extends GridPane {
     
     private Label UserNameLBL = new Label("Username:");
     private Label PassWordLBL = new Label ("Password:");
+     private Label SchoolLBL = new Label ("StuddyBuddy School");
     private TextField UserNameTF = new TextField();
     private TextField PasswordTF = new TextField();
     private VBox LoginVB = new VBox(10);
@@ -194,15 +224,24 @@ public class SBLoginGUI extends GridPane {
     private Label Title = new Label ("Welcome to Study Buddy!");
     private Label CopyWrite = new Label ("Omnibus Inc " + "\u00a9");
 
-    
+    private ChoiceBox<String> SchoolBox = new ChoiceBox<String>();
     
     ImageView iv = new ImageView();
    Image image = new Image("studygroup.png");
    
+   public String getSchoolChoice(ChoiceBox<String> schoice)
+   {
+       String school = schoice.getValue();
+       
+       return school; 
+   }
     
     public SBLoginGUI()
     {
-        
+        SchoolBox.getItems().add("UTRGV");
+        SchoolBox.getItems().add("TSC");
+        SchoolBox.getItems().add("STC");
+        SchoolBox.setValue("UTRGV");
      this.setStyle("-fx-background-color: #C0C0C0;");
      iv.setImage(image);
      iv.setFitHeight(100);
@@ -212,7 +251,7 @@ public class SBLoginGUI extends GridPane {
     
         Title.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
         Title.setPadding(new Insets(10,10,50,10));
-        LoginVB.getChildren().addAll(UserNameLBL,UserNameTF,PassWordLBL,PasswordTF);
+        LoginVB.getChildren().addAll(UserNameLBL,UserNameTF,PassWordLBL,PasswordTF,SchoolLBL,SchoolBox);
         ButtonHB.getChildren().addAll(CreateAccountBTN,LoginBTN);
         this.addRow(0,iv);
         this.addRow(1,Title);

@@ -17,6 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -26,6 +28,77 @@ import javafx.scene.text.FontWeight;
  * @author Andrew
  */
 public class SBMainGUI extends GridPane{
+
+    /**
+     * @return the Welcomevbox
+     */
+    public VBox getWelcomevbox() {
+        return Welcomevbox;
+    }
+
+    /**
+     * @param Welcomevbox the Welcomevbox to set
+     */
+    public void setWelcomevbox(VBox Welcomevbox) {
+        this.Welcomevbox = Welcomevbox;
+    }
+
+    /**
+     * @return the Appvbox
+     */
+    public VBox getAppvbox() {
+        return Appvbox;
+    }
+
+    /**
+     * @param Appvbox the Appvbox to set
+     */
+    public void setAppvbox(VBox Appvbox) {
+        this.Appvbox = Appvbox;
+    }
+
+ 
+    /**
+     * @return the FriendBox
+     */
+    public VBox getFriendBox() {
+        return FriendBox;
+    }
+
+    /**
+     * @param FriendBox the FriendBox to set
+     */
+    public void setFriendBox(VBox FriendBox) {
+        this.FriendBox = FriendBox;
+    }
+
+    /**
+     * @return the Apphbox
+     */
+    public HBox getApphbox() {
+        return Apphbox;
+    }
+
+    /**
+     * @param Apphbox the Apphbox to set
+     */
+    public void setApphbox(HBox Apphbox) {
+        this.Apphbox = Apphbox;
+    }
+
+    /**
+     * @return the MainBox
+     */
+    public HBox getMainBox() {
+        return MainBox;
+    }
+
+    /**
+     * @param MainBox the MainBox to set
+     */
+    public void setMainBox(HBox MainBox) {
+        this.MainBox = MainBox;
+    }
 
     /**
      * @return the date
@@ -273,7 +346,7 @@ public class SBMainGUI extends GridPane{
     private Button FriendSearchBTN= new Button("Friend Search ");
     private Button AddFriendBTN = new Button("Add Friend ");
     private Button HideFriendBTN = new Button("Hide Friends");
-    private Button CreateAppBTN = new Button ("Create New Appointment");
+    private Button CreateAppBTN = new Button ("Submit Appointment Date");
     private Button LogoutBTN = new Button ("Logout");
     private Button UploadFileBTN = new Button ("Upload File");
     private Button DoneBTN = new Button ("Done");
@@ -295,42 +368,53 @@ public class SBMainGUI extends GridPane{
     private TextArea DisplaySessionTA = new TextArea();
   ImageView iv = new ImageView();
    Image image = new Image("appointment.png");
+   private HBox Apphbox = new HBox(10);
+   private HBox MainBox = new HBox();
+   private VBox FriendBox = new VBox();
+   private VBox Appvbox = new VBox(20);
+   private VBox Welcomevbox = new VBox(20);
   
   
     public SBMainGUI()
             
             
     {  
+        
+       
+              Appvbox.setStyle("-fx-background-color: #52C286");
         date.setPromptText("Appointment Date");
-        this.setStyle("-fx-background-color: #CCFFFF");
-           Friends.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
+   
+          Friends.setStyle("-fx-border-color: black;");
+     
+           Friends.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 25));
        Session.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
         WelcomeLBL.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 26));
+       
         iv.setImage(image);
         iv.setFitHeight(20);
         iv.setFitWidth(20);
-        DisplayFriendTA.setMaxWidth(50);
-        DisplayFriendTA.setMaxHeight(50);
-        Friends.setPadding(new Insets(0,0,0,0));
+       
         Session.setAlignment(Pos.TOP_RIGHT);
-        WelcomeLBL.setPadding(new Insets(10,10,10,200));
+    
         DisplaySessionTA.setMaxWidth(300);
         DisplaySessionTA.setMaxHeight(200);
        
-      
+        DisplayFriendTA.setMaxWidth(300);
+        DisplayFriendTA.setMaxHeight(200);
+        Appvbox.getChildren().addAll(Session,DisplaySessionTA,date,CreateAppBTN,UploadFileBTN,LogoutBTN,Friends,DisplayFriendTA,FriendSearchBTN);
+        
+
+    
+        
         Session.setPadding(new Insets(10, 10, 10, 10));
+ 
         Session.setGraphic(iv);
-        this.add(WelcomeLBL,3,0);
-        this.add(Session,7,0);
-     
-        this.add(Friends,1,1);
-        this.add(DisplayFriendTA,1,2);
-        this.add( FriendSearchBTN,1,3);
-        this.add(DisplaySessionTA,7,1);
-        this.add(CreateAppBTN,7,2);
-        this.add(date,7,3);
-        this.add(UploadFileBTN, 6,4);
-        this.add(LogoutBTN,8,0);
+        this.add(Welcomevbox,3,0);
+      
+   
+       
+        
+   
     
          
 		
