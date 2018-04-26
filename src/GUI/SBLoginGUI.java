@@ -14,6 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -30,16 +35,7 @@ public class SBLoginGUI extends GridPane {
     /**
      * @return the SchoolBox
      */
-    public ChoiceBox<String> getSchoolBox() {
-        return SchoolBox;
-    }
-
-    /**
-     * @param SchoolBox the SchoolBox to set
-     */
-    public void setSchoolBox(ChoiceBox<String> SchoolBox) {
-        this.SchoolBox = SchoolBox;
-    }
+ 
 
     /**
      * @return the SchoolLBL
@@ -224,25 +220,30 @@ public class SBLoginGUI extends GridPane {
     private Label Title = new Label ("Welcome to Study Buddy!");
     private Label CopyWrite = new Label ("Omnibus Inc " + "\u00a9");
 
-    private ChoiceBox<String> SchoolBox = new ChoiceBox<String>();
+   
     
     ImageView iv = new ImageView();
    Image image = new Image("studygroup.png");
    
-   public String getSchoolChoice(ChoiceBox<String> schoice)
-   {
-       String school = schoice.getValue();
-       
-       return school; 
-   }
+   
+  
+    public boolean  notEmpty(TextField tf1, TextField tf2)
+    {
+        boolean ne = false; 
+        if (!tf1.getText().isEmpty() && !tf2.getText().isEmpty())
+        {
+            ne = true; 
+        }
+        return ne; 
+    }
+  
     
     public SBLoginGUI()
     {
-        SchoolBox.getItems().add("UTRGV");
-        SchoolBox.getItems().add("TSC");
-        SchoolBox.getItems().add("STC");
-        SchoolBox.setValue("UTRGV");
+      
+      
      this.setStyle("-fx-background-color: #C0C0C0;");
+     
      iv.setImage(image);
      iv.setFitHeight(100);
      iv.setFitWidth(100);
@@ -251,7 +252,7 @@ public class SBLoginGUI extends GridPane {
     
         Title.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
         Title.setPadding(new Insets(10,10,50,10));
-        LoginVB.getChildren().addAll(UserNameLBL,UserNameTF,PassWordLBL,PasswordTF,SchoolLBL,SchoolBox);
+        LoginVB.getChildren().addAll(UserNameLBL,UserNameTF,PassWordLBL,PasswordTF);
         ButtonHB.getChildren().addAll(CreateAccountBTN,LoginBTN);
         this.addRow(0,iv);
         this.addRow(1,Title);

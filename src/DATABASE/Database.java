@@ -68,10 +68,15 @@ public class Database {
      {
           try
             {
-            conn =   DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/student", "root", "medina55");
+            conn =   DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/studybuddy", "root", "medina55");
             myStmt = conn.createStatement();
-            myRs = myStmt.executeQuery("select * from students");
-            System.out.println("it worked :)");
+            myRs = myStmt.executeQuery("select * from student");
+            
+            
+            while(myRs.next())
+            {
+                System.out.println(myRs.getString("firstname"));
+            }
             
                 
             }

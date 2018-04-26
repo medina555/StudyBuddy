@@ -8,6 +8,7 @@ package MVC;
 import DATABASE.Database;
 import DATAMODEL.Student;
 import DATAMODEL.StudentDataModel;
+import EMAIL.EmailAttachmentSender;
 import GUI.SBLoginGUI;
 import GUI.SBMainGUI;
 import GUI.SBNewAccountFormGUI;
@@ -86,6 +87,11 @@ public class SBController {
             utrgviv.setFitHeight(500);
             stc.setFitWidth(700);
             stc.setFitHeight(500);
+            
+            
+            
+            
+            
            mGUI.getHideFriendBTN().setOnAction(
                    
                     new EventHandler<ActionEvent>()
@@ -125,42 +131,67 @@ public class SBController {
              public void handle (ActionEvent event)
              { 
                 
-     
+     Database mydb = Database.getSingletonOfdatabase();
    
- 
+      
+     try{
+   
+    Connection conn=  mydb.getConn();
+         Statement mystmt = conn.createStatement();
         
+     String school1 = "UTRGV";
+     String school2 = "STC";
+     if (lGUI.notEmpty(lGUI.getUserNameTF(), lGUI.getPasswordTF()) == true )
+     { 
+          
+     
+     ResultSet myrs = mystmt.executeQuery("SELECT username, sbpassword,school, FROM student");
+     
        
-       mGUI.getWelcomeLBL().setText("Welcome " + lGUI.getUserNameTF().getText());
-       ChoiceBox<String> Schoice =  lGUI.getSchoolBox();
-       if (lGUI.getSchoolChoice(Schoice).equals("UTRGV"))
+         myrs.beforeFirst();
+         while(myrs.next()){
+             System.out.println(myrs.getString("sbpassword"));
+           
+       if ((lGUI.getUserNameTF().getText().equals(myrs.getString("username"))) && (lGUI.getPasswordTF().getText().equals(myrs.getString("sbpassword")))&&
+              (school1.equals(myrs.getString("school"))))
        {
-           mGUI.setStyle("-fx-background-color: #FAD7A0");
+           
+                   System.out.println("pass");
+               
+                 mGUI.getWelcomeLBL().setText("Welcome " + lGUI.getUserNameTF().getText());
+                   mGUI.setStyle("-fx-background-color: #FAD7A0");
            mGUI.getAppvbox().setStyle("-fx-background-color: #52C286");
         
       VBox myvbox = new VBox();
       myvbox.getChildren().addAll(mGUI.getWelcomeLBL(),utrgviv);
        myvbox.setAlignment(Pos.CENTER);
-     mGUI.add(myvbox, 3, 0);
+     mGUI.add(myvbox, 3, 0); 
+     
        }
-       if (lGUI.getSchoolChoice(Schoice).equals("STC"))
+      if ((lGUI.getUserNameTF().getText().equals(myrs.getString("username"))) && (lGUI.getPasswordTF().getText().equals(myrs.getString("sbpassword")))&&
+              (school2.equals(myrs.getString("school"))))
        {
            mGUI.setStyle("-fx-background-color: #BB8FCE");
            mGUI.getAppvbox().setStyle("-fx-background-color: #AB98D9");
-         
-              VBox myvbox = new VBox();
-              myvbox.setAlignment(Pos.CENTER);
-      myvbox.getChildren().addAll(mGUI.getWelcomeLBL(),stc);
-     mGUI.add(myvbox, 3, 0);
+           mGUI.getWelcomeLBL().setText("Welcome " + lGUI.getUserNameTF().getText());
+       
+              VBox myvbox2 = new VBox();
+              myvbox2.setAlignment(Pos.CENTER);
+      myvbox2.getChildren().addAll(mGUI.getWelcomeLBL(),stc);
+     mGUI.add(myvbox2, 3, 0);
      
        }
  
-          
+         
        
-       
-       SBNewAccountFormGUI snaf = new SBNewAccountFormGUI();
       
-       Scene scene2 = new Scene(snaf);
-       primaryStage.close();
+      
+       
+  
+      
+       }
+         
+              primaryStage.close();
       
      
  
@@ -184,17 +215,15 @@ public class SBController {
        window.setTitle("Study Buddy");
        
         window.setScene(scene3);
-        window.show();
+        window.show(); 
+         
+       
+  
     
                 
-                
+     }         
                  
-                 Alert errorAlert = new Alert(AlertType.INFORMATION);
-                    errorAlert.setHeaderText("LOGIN SUCESSFULLY");
-                    errorAlert.setContentText("WELCOME " + lGUI.getUserNameTF().getText());
-                        
-                    errorAlert.showAndWait();
-        
+     }catch (Exception e){}    
                      
              
                 
@@ -219,20 +248,92 @@ public class SBController {
              }
          }
                             );
+                  
+                  
+                  
+                       
+                 lGUI.getCreateAccountBTN().setOnAction(
+                    
+                    new EventHandler<ActionEvent>()
+         {
+             @Override
+             public void handle (ActionEvent event)
+             {
+                    Stage window = new Stage();
+       
+       
+    
+       
+		 BorderPane root = new BorderPane();
+                 root.setCenter(mGUI);
+                 root.setRight(mGUI.getAppvbox());
+                 root.setLeft(mGUI.getFriendBox());
+               
+                 BorderPane root2 = new BorderPane();
+                 root2.setCenter(snafGUI);
+	
+             Scene   scene3 = new Scene(root2,1000,1000);
+                
+		
+	    
+        
+       window.setTitle("Study Buddy");
+       
+        window.setScene(scene3);
+        window.show();
+              
+          
+             }
+         }
+                            );
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
            
            
            
-            snafGUI.getBtn1().setOnAction(
-                   
+            snafGUI.getCreateAccBTN().setOnAction(
+                 
                     new EventHandler<ActionEvent>()
          {
              @Override
              public void handle (ActionEvent event)
              {
                  
-                
                  
-                 if(snafGUI.getFnameTF().getText().isEmpty())
+                 try {
+                     
+                       Connection Conn = Database.getSingletonOfdatabase().getConn();
+                   Statement mystmt = Conn.createStatement();
+                   ResultSet myrs = mystmt.executeQuery("SELECT username,studentid from student");
+                   
+                   while(myrs.next())
+                   {
+                               if(snafGUI.getUnameTF().getText().equals(myrs.getString("username")))
+                                       {
+                                                Alert errorAlert = new Alert(AlertType.ERROR);
+                    errorAlert.setHeaderText("USERNAME ALREADY EXISTS");
+                    errorAlert.setContentText("Sorry that username is already taken!!");
+                        
+                    errorAlert.showAndWait();
+                  
+                                           System.out.println("it worked");
+                                           break;
+                                       }
+           
+                   }
+                   myrs.beforeFirst();
+                   
+                           if(snafGUI.getFnameTF().getText().isEmpty())
                  {
                     Alert errorAlert = new Alert(AlertType.ERROR);
                     errorAlert.setHeaderText("INVALID USERNAME");
@@ -257,21 +358,156 @@ public class SBController {
          
                  
              }
+                   
                  
-                 
-                 else    {
-                    Alert errorAlert = new Alert(AlertType.INFORMATION);
+                if(snafGUI.notEmpty(snafGUI.getFnameTF(),snafGUI.getLnameTF(),snafGUI.getUnameTF(),snafGUI.getPassTF(),snafGUI.getEmailTF(),snafGUI.getMajorlabelTF())==true)
+                         {
+                        
+                            ArrayList<Integer> numlist = new ArrayList();    
+                             int x = 0; 
+                             if (myrs.next()==false)
+                             {
+                                  x = 1; 
+                                  
+                                  
+                                  
+                                    ChoiceBox<String> cemail= snafGUI.getEmailBox();
+                                 
+                                     ChoiceBox<String> schoice = snafGUI.getSchoolBox();
+                                     String firstname = snafGUI.getFnameTF().getText();
+                                     String lastname = snafGUI.getLnameTF().getText();
+                                     String major = snafGUI.getMajorlabelTF().getText();
+
+                                     String school= snafGUI.getSchoolChoice(schoice);
+                                     String email = snafGUI.getEmailTF().getText() +snafGUI.getSchoolChoice(cemail);
+                                     String username = snafGUI.getUnameTF().getText();
+                                     String password = snafGUI.getPassTF().getText();
+                                            
+                      PreparedStatement pstmt= Conn.prepareStatement("INSERT into student VALUES(?,?,?,?,?,?,?,?)");
+                      
+                   
+                      
+                    pstmt.setInt(1,x );
+                    pstmt.setString(2, firstname);
+                    pstmt.setString(3, lastname);
+                    pstmt.setString(4, major);
+                    pstmt.setString(5, school);
+                    pstmt.setString(6, email);
+                    pstmt.setString(7, username);
+                    pstmt.setString(8, password);
+                    
+                     pstmt.executeUpdate();
+                                 
+                                 
+                             }
+                             else {
+                             myrs.beforeFirst();
+                             while (myrs.next()){
+                      
+                             if (!(myrs.getString("username").equals(snafGUI.getUnameTF().getText() )))
+                             {
+                             myrs.afterLast();
+                             myrs.previous();
+                             x = myrs.getInt("studentid") + 1;
+                              
+                                 System.out.println(x);
+                               
+                                          ChoiceBox<String> cemail= snafGUI.getEmailBox();
+                                 
+                                     ChoiceBox<String> schoice = snafGUI.getSchoolBox();
+                                     String firstname = snafGUI.getFnameTF().getText();
+                                     String lastname = snafGUI.getLnameTF().getText();
+                                     String major = snafGUI.getMajorlabelTF().getText();
+
+                                     String school= snafGUI.getSchoolChoice(schoice);
+                                     String email = snafGUI.getEmailTF().getText() +snafGUI.getSchoolChoice(cemail);
+                                     String username = snafGUI.getUnameTF().getText();
+                                     String password = snafGUI.getPassTF().getText();
+                                            
+                      PreparedStatement pstmt= Conn.prepareStatement("INSERT into student VALUES(?,?,?,?,?,?,?,?)");
+                      
+                   
+                      
+                    pstmt.setInt(1,x );
+                    pstmt.setString(2, firstname);
+                    pstmt.setString(3, lastname);
+                    pstmt.setString(4, major);
+                    pstmt.setString(5, school);
+                    pstmt.setString(6, email);
+                    pstmt.setString(7, username);
+                    pstmt.setString(8, password);
+                    
+                     pstmt.executeUpdate();
+                                     
+                                Alert errorAlert = new Alert(AlertType.INFORMATION);
                     errorAlert.setHeaderText("ACCOUNT CREATED SUCESSFULLY");
                     errorAlert.setContentText("You can now log in with your new information");
                         
-                    errorAlert.showAndWait();
+                    errorAlert.showAndWait();  
+                          
+                                        try
+        {        String host = "smtp.outlook.com";
+		String eport = "587";
+		String emailFrom = "studybuddyutrgv@outlook.com";
+		String epassword = "utrgv123";
+
+		// message info
+		String emailTo = email;
+		String esubject = "Welcome to Study Buddy!";
+		String emessage = " Your new login information is  " + "username: "+ username + "\n" +"password" + password;
+
+		// attachments
+		String[] eattachFiles = new String[1];
+		eattachFiles[0] = "UTRGV.png";
                 
+		//attachFiles[2] = "e:/Test/Video.mp4";
+		
+		// CC emails
+		String[] ccEmails ={""};
+			EmailAttachmentSender.sendEmailWithAttachments(host, eport, emailFrom, epassword, emailTo,
+				esubject, emessage, eattachFiles);
+			System.out.println("Email sent.");
+        }
+           catch (Exception ex) {
+			System.out.println("Could not send email.");
+			ex.printStackTrace();
+		}
+
+	
+                    
+                             
+                    }
+                    
+                    
+                    
+                          
+                        
+                                  
+     
+                                 
+                                 
+                                 
+                               
+                                 
+                
+                             }
                    
-         
+       
+                         }
+
                  
              }
+            	  
+                else
+                {
+                    System.out.println("one of the field was left blank");
+                }
+                   
+                } 
+                   
+                catch(Exception e){}   
                  
-                 
+         
                  
                  
                  
