@@ -6,6 +6,7 @@
 package MAIN;
 
 import DATAMODEL.StudentDataModel;
+import GUI.SBAddFriend;
 import GUI.SBLoginGUI;
 import GUI.SBMainGUI;
 import GUI.SBNewAccountFormGUI;
@@ -26,9 +27,14 @@ import javafx.stage.Stage;
  * @author Andrew
  */
 public class SBMain extends Application {
+
+    /**
+     * @return the window
+     */
+
     
    
-   public Stage window;
+   public  Stage window;
     Scene scene2;
     Scene scene3;
      public SBMain()
@@ -37,16 +43,17 @@ public class SBMain extends Application {
      };
     @Override
     public void start(Stage primaryStage) {
-     window = primaryStage;
+       window = primaryStage;
        SBMainGUI mgui= new SBMainGUI();
        StudentDataModel sdmodel = new StudentDataModel();
        SBLoginGUI sblogingui = new SBLoginGUI();
        SBNewAccountFormGUI sbnafGUI = new SBNewAccountFormGUI();
+       SBAddFriend sbafGUI = new SBAddFriend();
        
        
        
        
-      SBController sc = new SBController(mgui,sdmodel,sblogingui,sbnafGUI);
+      SBController sc = new SBController(mgui,sdmodel,sblogingui,sbnafGUI,sbafGUI);
        
 		sc.setPrimaryStage(window);
                
@@ -55,15 +62,16 @@ public class SBMain extends Application {
              
 		Scene scene = new Scene(sblogingui, 1000, 500,Color.BLUE);
  
-              
-                
+      
+            
 		
 	 
         
         primaryStage.setTitle("Study Buddy");
       
         primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.show();      
+         
     }
 
     /**

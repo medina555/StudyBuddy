@@ -12,6 +12,48 @@ package DATAMODEL;
 public class Student {
 
     /**
+     * @return the major
+     */
+    public String getMajor() {
+        return major;
+    }
+
+    /**
+     * @param major the major to set
+     */
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    /**
+     * @return the school
+     */
+    public String getSchool() {
+        return school;
+    }
+
+    /**
+     * @param school the school to set
+     */
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    /**
+     * @return the sid
+     */
+    public int getSid() {
+        return sid;
+    }
+
+    /**
+     * @param sid the sid to set
+     */
+    public void setSid(int sid) {
+        this.sid = sid;
+    }
+
+    /**
      * @return the email
      */
     public String getEmail() {
@@ -60,11 +102,20 @@ public class Student {
     private String firstname; 
     private String lastname; 
     private String email;
+    private String major;
+    private String school;
+    private int sid; 
 
-    public Student(String firstname, String lastname, String email) {
+ 
+
+    public Student(String firstname, String lastname, String email, String major, String school, int sid) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.major = major;
+        this.school = school;
+        this.sid = sid;
     }
-    public Student(){};
+   
+    
 }
