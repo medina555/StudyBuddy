@@ -368,7 +368,7 @@ public class SBController {
                 if(snafGUI.notEmpty(snafGUI.getFnameTF(),snafGUI.getLnameTF(),snafGUI.getUnameTF(),snafGUI.getPassTF(),snafGUI.getEmailTF(),snafGUI.getMajorlabelTF())==true)
                          {
                         
-                      
+                      myrs.beforeFirst();
                              int x = 0; 
                              if (myrs.next()==false)
                              {
@@ -414,7 +414,7 @@ public class SBController {
                              myrs.afterLast();
                              myrs.previous();
                              x = myrs.getInt("studentid") + 1;
-                              myrs.close();
+                            
                                  System.out.println(x);
                                
                                           ChoiceBox<String> cemail= snafGUI.getEmailBox();
@@ -508,7 +508,7 @@ public class SBController {
                 {
                     System.out.println("one of the field was left blank");
                 }
-                   myrs.close();
+                   
                 } 
                   
                 catch(Exception e){}   
