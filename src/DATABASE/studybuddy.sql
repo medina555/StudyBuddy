@@ -174,7 +174,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'asdf','asdf','asdf','UTRGV','asdf@utrgv.edu','asdf','asdf'),(2,'adf','fff','fff','UTRGV','fff@utrgv.edu','fff','fff');
+INSERT INTO `student` VALUES (3,'3','3','3','UTRGV','3@utrgv.edu','3','33'),(4,'4','4','4','UTRGV','4@utrgv.edu','4','4'),(5,'asdf','asdf','SCE','STC','advancedandrew@gmail.com','asdf','asdf'),(9,'9','9','9','UTRGV','999@utrgv.edu','9','9'),(344,'3','3','3','UTRGV','3@utrgv.edu','34','3');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -187,4 +187,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-26  0:00:58
+-- Dump completed on 2018-04-26  6:22:41
