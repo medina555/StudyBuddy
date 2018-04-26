@@ -122,6 +122,11 @@ public class SBController {
            
            
            
+           
+           
+           
+           
+           
                    lGUI.getLoginBTN().setOnAction(
                           
                            new EventHandler<ActionEvent>()
@@ -136,7 +141,7 @@ public class SBController {
       
      try{
    
-    Connection conn=  mydb.getConn();
+         Connection conn=  mydb.getConn();
          Statement mystmt = conn.createStatement();
         
      String school1 = "UTRGV";
@@ -145,15 +150,15 @@ public class SBController {
      { 
           
      
-     ResultSet myrs = mystmt.executeQuery("SELECT username, sbpassword,school, FROM student");
+     ResultSet myrs1 = mystmt.executeQuery("SELECT username,sbpassword,school FROM student");
      
        
-         myrs.beforeFirst();
-         while(myrs.next()){
-             System.out.println(myrs.getString("sbpassword"));
-           
-       if ((lGUI.getUserNameTF().getText().equals(myrs.getString("username"))) && (lGUI.getPasswordTF().getText().equals(myrs.getString("sbpassword")))&&
-              (school1.equals(myrs.getString("school"))))
+         
+         while(myrs1.next()){
+             System.out.println(myrs1.getString("sbpassword"));
+           System.out.println(myrs1.getString("username"));
+       if ((lGUI.getUserNameTF().getText().equals(myrs1.getString("username"))) && (lGUI.getPasswordTF().getText().equals(myrs1.getString("sbpassword")))&&
+              (school1.equals(myrs1.getString("school"))))
        {
            
                    System.out.println("pass");
@@ -168,8 +173,8 @@ public class SBController {
      mGUI.add(myvbox, 3, 0); 
      
        }
-      if ((lGUI.getUserNameTF().getText().equals(myrs.getString("username"))) && (lGUI.getPasswordTF().getText().equals(myrs.getString("sbpassword")))&&
-              (school2.equals(myrs.getString("school"))))
+      if ((lGUI.getUserNameTF().getText().equals(myrs1.getString("username"))) && (lGUI.getPasswordTF().getText().equals(myrs1.getString("sbpassword")))&&
+              (school2.equals(myrs1.getString("school"))))
        {
            mGUI.setStyle("-fx-background-color: #BB8FCE");
            mGUI.getAppvbox().setStyle("-fx-background-color: #AB98D9");
@@ -327,11 +332,11 @@ public class SBController {
                     errorAlert.showAndWait();
                   
                                            System.out.println("it worked");
-                                           break;
+                                       break;
                                        }
            
                    }
-                   myrs.beforeFirst();
+                
                    
                            if(snafGUI.getFnameTF().getText().isEmpty())
                  {
@@ -363,7 +368,7 @@ public class SBController {
                 if(snafGUI.notEmpty(snafGUI.getFnameTF(),snafGUI.getLnameTF(),snafGUI.getUnameTF(),snafGUI.getPassTF(),snafGUI.getEmailTF(),snafGUI.getMajorlabelTF())==true)
                          {
                         
-                            ArrayList<Integer> numlist = new ArrayList();    
+                      
                              int x = 0; 
                              if (myrs.next()==false)
                              {
@@ -409,7 +414,7 @@ public class SBController {
                              myrs.afterLast();
                              myrs.previous();
                              x = myrs.getInt("studentid") + 1;
-                              
+                              myrs.close();
                                  System.out.println(x);
                                
                                           ChoiceBox<String> cemail= snafGUI.getEmailBox();
@@ -444,6 +449,7 @@ public class SBController {
                     errorAlert.setContentText("You can now log in with your new information");
                         
                     errorAlert.showAndWait();  
+                    myrs.beforeFirst();
                           
                                         try
         {        String host = "smtp.outlook.com";
@@ -491,7 +497,7 @@ public class SBController {
                                  
                 
                              }
-                   
+       
        
                          }
 
@@ -502,9 +508,9 @@ public class SBController {
                 {
                     System.out.println("one of the field was left blank");
                 }
-                   
+                   myrs.close();
                 } 
-                   
+                  
                 catch(Exception e){}   
                  
          
