@@ -30,6 +30,34 @@ import javafx.scene.text.FontWeight;
 public class SBMainGUI extends GridPane{
 
     /**
+     * @return the AnnouncementsLabel
+     */
+    public Label getAnnouncementsLabel() {
+        return AnnouncementsLabel;
+    }
+
+    /**
+     * @param AnnouncementsLabel the AnnouncementsLabel to set
+     */
+    public void setAnnouncementsLabel(Label AnnouncementsLabel) {
+        this.AnnouncementsLabel = AnnouncementsLabel;
+    }
+
+    /**
+     * @return the AnnouncementTA
+     */
+    public TextArea getAnnouncementTA() {
+        return AnnouncementTA;
+    }
+
+    /**
+     * @param AnnouncementTA the AnnouncementTA to set
+     */
+    public void setAnnouncementTA(TextArea AnnouncementTA) {
+        this.AnnouncementTA = AnnouncementTA;
+    }
+
+    /**
      * @return the Welcomevbox
      */
     public VBox getWelcomevbox() {
@@ -362,8 +390,9 @@ public class SBMainGUI extends GridPane{
     private Label Session = new Label ("Study Session Appointments");
     private Label OnlineSes = new Label ("Create New Online Session");
     private Label AddFriendSLabel = new Label ("Request Sent");
+    private Label AnnouncementsLabel = new Label ("Announcements");
     
-    
+    private TextArea AnnouncementTA = new TextArea();
     private TextArea DisplayFriendTA = new TextArea();
     private TextArea DisplaySessionTA = new TextArea();
   ImageView iv = new ImageView();
@@ -401,15 +430,19 @@ public class SBMainGUI extends GridPane{
        
         DisplayFriendTA.setMaxWidth(300);
         DisplayFriendTA.setMaxHeight(200);
+        
+        AnnouncementTA.setMaxWidth(300);
+        AnnouncementTA.setMaxHeight(200);
         Appvbox.getChildren().addAll(Session,DisplaySessionTA,date,CreateAppBTN,UploadFileBTN,LogoutBTN,Friends,DisplayFriendTA,FriendSearchBTN);
         
-
+      
     
         
         Session.setPadding(new Insets(10, 10, 10, 10));
  
         Session.setGraphic(iv);
         this.add(Welcomevbox,3,0);
+       
       
    
        

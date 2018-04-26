@@ -219,7 +219,7 @@ public class SBLoginGUI extends GridPane {
     private HBox ButtonHB = new HBox();
     private Label Title = new Label ("Welcome to Study Buddy!");
     private Label CopyWrite = new Label ("Omnibus Inc " + "\u00a9");
-
+   private VBox titlevbox = new VBox();
    
     
     ImageView iv = new ImageView();
@@ -243,19 +243,21 @@ public class SBLoginGUI extends GridPane {
       
       
      this.setStyle("-fx-background-color: #C0C0C0;");
+     this.setStyle("-fx-background-image: url('sblg1.JPG')");
      
      iv.setImage(image);
      iv.setFitHeight(100);
      iv.setFitWidth(100);
      
         this.setAlignment(Pos.CENTER);
-    
+     titlevbox.getChildren().addAll(iv,Title);
+     titlevbox.setStyle("-fx-background-color : #C0C0C0;");
         Title.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
         Title.setPadding(new Insets(10,10,50,10));
         LoginVB.getChildren().addAll(UserNameLBL,UserNameTF,PassWordLBL,PasswordTF);
         ButtonHB.getChildren().addAll(CreateAccountBTN,LoginBTN);
-        this.addRow(0,iv);
-        this.addRow(1,Title);
+        this.addRow(0,titlevbox);
+     
         this.addRow(2, LoginVB);
         this.addRow(3, ButtonHB);
         this.add(CopyWrite,4,4);

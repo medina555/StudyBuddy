@@ -14,6 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 
 /**
  *
@@ -21,6 +24,48 @@ import javafx.scene.layout.HBox;
  */
 public class SBNewAccountFormGUI extends GridPane 
 {
+
+    /**
+     * @return the SBid
+     */
+    public Label getSBid() {
+        return SBid;
+    }
+
+    /**
+     * @param SBid the SBid to set
+     */
+    public void setSBid(Label SBid) {
+        this.SBid = SBid;
+    }
+
+    /**
+     * @return the SBidTF
+     */
+    public TextField getSBidTF() {
+        return SBidTF;
+    }
+
+    /**
+     * @param SBidTF the SBidTF to set
+     */
+    public void setSBidTF(TextField SBidTF) {
+        this.SBidTF = SBidTF;
+    }
+
+    /**
+     * @return the NATitle
+     */
+    public Label getNATitle() {
+        return NATitle;
+    }
+
+    /**
+     * @param NATitle the NATitle to set
+     */
+    public void setNATitle(Label NATitle) {
+        this.NATitle = NATitle;
+    }
 
     /**
      * @return the majorlabelTF
@@ -286,8 +331,10 @@ public class SBNewAccountFormGUI extends GridPane
      private Label majorlabel = new Label ("Major: ");
       private RadioButton MButton = new RadioButton("Male");
     private RadioButton FButton = new RadioButton ("Female");
+    private Label NATitle = new Label("New Studdy Buddy Account Form");
      
-     
+     private Label SBid = new Label ("School id");
+     private TextField SBidTF = new TextField();
      private TextField fnameTF = new TextField();
     private TextField lnameTF = new TextField();
      private TextField unameTF = new TextField();
@@ -311,6 +358,9 @@ public class SBNewAccountFormGUI extends GridPane
       
     public SBNewAccountFormGUI()
     {
+        
+       this.setWidth(500);
+       this.setHeight(500);
           
         SchoolBox.getItems().add("UTRGV");
         SchoolBox.getItems().add("TSC");
@@ -328,17 +378,20 @@ public class SBNewAccountFormGUI extends GridPane
         
         
         
-            this.setStyle("-fx-background-color: #C0C0C0;");
+            this.setStyle("-fx-background-color: #3BB0DB;");
+            this.setVgap(20);
         RButtonhbox.getChildren().addAll(MButton,FButton);
-   
+        NATitle.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 30));
+        this.addRow(1, NATitle);
         this.addRow(2,fname,fnameTF);
         this.addRow(3,lname,lnameTF);
         this.addRow(4,uname,unameTF);
         this.addRow(5,pass,passTF);
-        this.addRow(6, email,emailTF,EmailBox);
-         this.addRow(7,slabel,SchoolBox);
-         this.addRow(8, majorlabel,majorlabelTF);
-        this.addRow(9,CreateAccBTN);
+        this.addRow(6, SBid,SBidTF);
+        this.addRow(7, email,emailTF,EmailBox);
+         this.addRow(8,slabel,SchoolBox);
+         this.addRow(9, majorlabel,majorlabelTF);
+        this.addRow(10,CreateAccBTN);
          
 		
     }
