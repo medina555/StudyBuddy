@@ -1,6 +1,8 @@
+CREATE DATABASE  IF NOT EXISTS `studybuddy` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `studybuddy`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: studybuddy
+-- Host: 127.0.0.1    Database: studybuddy
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -158,7 +160,10 @@ CREATE TABLE `student` (
   `firstname` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `major` varchar(45) NOT NULL,
-  `type` int(11) NOT NULL,
+  `school` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `sbpassword` varchar(45) NOT NULL,
   PRIMARY KEY (`studentid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -169,6 +174,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES (1,'asdf','asdf','asdf','UTRGV','asdf@utrgv.edu','asdf','asdf'),(2,'adf','fff','fff','UTRGV','fff@utrgv.edu','fff','fff');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -181,4 +187,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-18 23:23:19
+-- Dump completed on 2018-04-26  0:00:58
