@@ -7,6 +7,7 @@ package GUI;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -15,6 +16,34 @@ import javafx.scene.layout.VBox;
  * @author Andrew
  */
 public class SBCreateGroupGUI extends VBox{
+
+    /**
+     * @return the SubmitBTN
+     */
+    public Button getSubmitBTN() {
+        return SubmitBTN;
+    }
+
+    /**
+     * @param SubmitBTN the SubmitBTN to set
+     */
+    public void setSubmitBTN(Button SubmitBTN) {
+        this.SubmitBTN = SubmitBTN;
+    }
+
+    /**
+     * @return the glist
+     */
+    public ListView<String> getGlist() {
+        return glist;
+    }
+
+    /**
+     * @param glist the glist to set
+     */
+    public void setGlist(ListView<String> glist) {
+        this.glist = glist;
+    }
 
     /**
      * @return the gidLBL
@@ -169,13 +198,23 @@ public class SBCreateGroupGUI extends VBox{
     private TextField ginstructorTF = new TextField();
     
     private Button SubmitBTN = new Button("Submit Data");
-     
+       private ListView<String> glist = new ListView(); 
+    
+    
+    
      public SBCreateGroupGUI()
      {
-         this.getChildren().addAll(gidLBL,gidTF,gnameLBL,gnameTF,cidLBL,cidTF,subLBL,subTF,ginstructorLBL,ginstructorTF);
+         this.getChildren().addAll(gidLBL,gidTF,gnameLBL,gnameTF,cidLBL,cidTF,subLBL,subTF,ginstructorLBL,ginstructorTF, SubmitBTN);
          
      }
      
-    
+    public void clearfieldgroup()
+    {
+        gidTF.clear();
+        cidTF.clear();
+        gnameTF.clear();
+        ginstructorTF.clear();
+        subTF.clear();
+    }
     
 }

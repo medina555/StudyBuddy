@@ -35,6 +35,90 @@ import javafx.scene.text.FontWeight;
 public class SBMainGUI extends GridPane{
 
     /**
+     * @return the grouptable
+     */
+    public TableView getGrouptable() {
+        return grouptable;
+    }
+
+    /**
+     * @param grouptable the grouptable to set
+     */
+    public void setGrouptable(TableView grouptable) {
+        this.grouptable = grouptable;
+    }
+
+    /**
+     * @return the groupname
+     */
+    public TableColumn getGroupname() {
+        return groupname;
+    }
+
+    /**
+     * @param groupname the groupname to set
+     */
+    public void setGroupname(TableColumn groupname) {
+        this.groupname = groupname;
+    }
+
+    /**
+     * @return the groupid
+     */
+    public TableColumn getGroupid() {
+        return groupid;
+    }
+
+    /**
+     * @param groupid the groupid to set
+     */
+    public void setGroupid(TableColumn groupid) {
+        this.groupid = groupid;
+    }
+
+    /**
+     * @return the groupcid
+     */
+    public TableColumn getGroupcid() {
+        return groupcid;
+    }
+
+    /**
+     * @param groupcid the groupcid to set
+     */
+    public void setGroupcid(TableColumn groupcid) {
+        this.groupcid = groupcid;
+    }
+
+    /**
+     * @return the groupsub
+     */
+    public TableColumn getGroupsub() {
+        return groupsub;
+    }
+
+    /**
+     * @param groupsub the groupsub to set
+     */
+    public void setGroupsub(TableColumn groupsub) {
+        this.groupsub = groupsub;
+    }
+
+    /**
+     * @return the groupinst
+     */
+    public TableColumn getGroupinst() {
+        return groupinst;
+    }
+
+    /**
+     * @param groupinst the groupinst to set
+     */
+    public void setGroupinst(TableColumn groupinst) {
+        this.groupinst = groupinst;
+    }
+
+    /**
      * @return the createGroupBTN
      */
     public Button getCreateGroupBTN() {
@@ -485,11 +569,11 @@ public class SBMainGUI extends GridPane{
   private String fvalue = "";
   
   
-              TableColumn groupname = new TableColumn ("Group Name");
-                       TableColumn groupid = new TableColumn ("Group ID");
-                       TableColumn groupcid = new TableColumn("Course ID");
-                       TableColumn groupsub = new TableColumn ("Course Subject");
-                       TableColumn groupinst = new TableColumn ("Course Instructor");
+              private TableColumn groupname = new TableColumn ("Group Name");
+                       private TableColumn groupid = new TableColumn ("Group ID");
+                       private TableColumn groupcid = new TableColumn("Course ID");
+                       private TableColumn groupsub = new TableColumn ("Course Subject");
+                       private TableColumn groupinst = new TableColumn ("Course Instructor");
         final Label tablelbl = new Label("StudyBuddy Sessions");
     public SBMainGUI()
             

@@ -42,7 +42,7 @@ public class GroupDataModel {
        public void setGroup(Group grp)
 	{
             this.group = grp;
-		getGrouplist().add(grp);
+		grouplist.add(grp);
                 
                 
                 
