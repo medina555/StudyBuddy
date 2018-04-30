@@ -345,10 +345,10 @@ public class SBNewAccountFormGUI extends GridPane
             private HBox RButtonhbox = new HBox();
             
             
-      public boolean notEmpty(TextField tf1, TextField tf2,TextField tf3, TextField tf4, TextField tf5, TextField tf6)
+      public boolean isEmpty(TextField tf1, TextField tf2,TextField tf3, TextField tf4, TextField tf5, TextField tf6)
               
       { boolean ne = false; 
-          if (!tf1.getText().isEmpty()&&!tf2.getText().isEmpty()&&!tf3.getText().isEmpty()&&!tf4.getText().isEmpty()&&!tf5.getText().isEmpty()&&!tf6.getText().isEmpty())
+          if (tf1.getText().isEmpty()||tf2.getText().isEmpty()||tf3.getText().isEmpty()||tf4.getText().isEmpty()||tf5.getText().isEmpty()||tf6.getText().isEmpty())
           {
               ne = true;
               

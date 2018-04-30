@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,6 +32,20 @@ import javafx.scene.text.FontWeight;
  * @author Andrew
  */
 public class SBLoginGUI extends GridPane {
+
+    /**
+     * @return the PasswordTF
+     */
+    public PasswordField getPasswordTF() {
+        return PasswordTF;
+    }
+
+    /**
+     * @param PasswordTF the PasswordTF to set
+     */
+    public void setPasswordTF(PasswordField PasswordTF) {
+        this.PasswordTF = PasswordTF;
+    }
 
     /**
      * @return the SchoolBox
@@ -167,16 +182,7 @@ public class SBLoginGUI extends GridPane {
     /**
      * @return the PasswordTF
      */
-    public TextField getPasswordTF() {
-        return PasswordTF;
-    }
-
-    /**
-     * @param PasswordTF the PasswordTF to set
-     */
-    public void setPasswordTF(TextField PasswordTF) {
-        this.PasswordTF = PasswordTF;
-    }
+  
 
     /**
      * @return the LoginVB
@@ -214,7 +220,7 @@ public class SBLoginGUI extends GridPane {
     private Label PassWordLBL = new Label ("Password:");
      private Label SchoolLBL = new Label ("StuddyBuddy School");
     private TextField UserNameTF = new TextField();
-    private TextField PasswordTF = new TextField();
+    private PasswordField PasswordTF = new PasswordField();
     private VBox LoginVB = new VBox(10);
     private HBox ButtonHB = new HBox();
     private Label Title = new Label ("Welcome to Study Buddy!");
@@ -227,20 +233,17 @@ public class SBLoginGUI extends GridPane {
    
    
   
-    public boolean  notEmpty(TextField tf1, TextField tf2)
+    public void  clearfieldslogin(TextField tf1, PasswordField tf2)
     {
-        boolean ne = false; 
-        if (!tf1.getText().isEmpty() && !tf2.getText().isEmpty())
-        {
-            ne = true; 
-        }
-        return ne; 
+       tf1.clear();
+       tf2.clear();
     }
   
     
     public SBLoginGUI()
     {
-      
+      UserNameTF.setPromptText("username");
+      PasswordTF.setPromptText("password");
       
      this.setStyle("-fx-background-color: #C0C0C0;");
      this.setStyle("-fx-background-image: url('sblg1.JPG')");

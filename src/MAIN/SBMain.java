@@ -5,11 +5,14 @@
  */
 package MAIN;
 
+import DATAMODEL.GroupDataModel;
 import DATAMODEL.StudentDataModel;
 import GUI.SBAddFriend;
+import GUI.SBCreateGroupGUI;
 import GUI.SBLoginGUI;
 import GUI.SBMainGUI;
 import GUI.SBNewAccountFormGUI;
+import MVC.GroupController;
 import MVC.SBController;
 
 import javafx.application.Application;
@@ -49,11 +52,14 @@ public class SBMain extends Application {
        SBLoginGUI sblogingui = new SBLoginGUI();
        SBNewAccountFormGUI sbnafGUI = new SBNewAccountFormGUI();
        SBAddFriend sbafGUI = new SBAddFriend();
+       GroupDataModel gdm = new GroupDataModel();
+       SBCreateGroupGUI cGUI = new SBCreateGroupGUI();
        
        
        
        
       SBController sc = new SBController(mgui,sdmodel,sblogingui,sbnafGUI,sbafGUI);
+      GroupController gc = new GroupController(gdm,cGUI,mgui);
        
 		sc.setPrimaryStage(window);
                
@@ -61,10 +67,11 @@ public class SBMain extends Application {
                
              
 		Scene scene = new Scene(sblogingui, 1000, 500,Color.BLUE);
+       
  
       
             
-		
+	  mgui.getLogoutBTN().setOnAction(e ->  window.close())	;
 	 
         
         primaryStage.setTitle("Study Buddy");
@@ -72,6 +79,10 @@ public class SBMain extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();      
          
+      
+   
+      
+        
     }
 
     /**

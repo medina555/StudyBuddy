@@ -5,13 +5,18 @@
  */
 package GUI;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -28,6 +33,76 @@ import javafx.scene.text.FontWeight;
  * @author Andrew
  */
 public class SBMainGUI extends GridPane{
+
+    /**
+     * @return the createGroupBTN
+     */
+    public Button getCreateGroupBTN() {
+        return createGroupBTN;
+    }
+
+    /**
+     * @param createGroupBTN the createGroupBTN to set
+     */
+    public void setCreateGroupBTN(Button createGroupBTN) {
+        this.createGroupBTN = createGroupBTN;
+    }
+
+    /**
+     * @return the fvalue
+     */
+    public String getFvalue() {
+        return fvalue;
+    }
+
+    /**
+     * @param fvalue the fvalue to set
+     */
+    public void setFvalue(String fvalue) {
+        this.fvalue = fvalue;
+    }
+
+    /**
+     * @return the glist
+     */
+    public ListView<String> getGlist() {
+        return glist;
+    }
+
+    /**
+     * @param glist the glist to set
+     */
+    public void setGlist(ListView<String> glist) {
+        this.glist = glist;
+    }
+
+    /**
+     * @return the addGroupBTN
+     */
+    public Button getAddGroupBTN() {
+        return addGroupBTN;
+    }
+
+    /**
+     * @param addGroupBTN the addGroupBTN to set
+     */
+    public void setAddGroupBTN(Button addGroupBTN) {
+        this.addGroupBTN = addGroupBTN;
+    }
+
+    /**
+     * @return the slist
+     */
+    public ListView<String> getSlist() {
+        return slist;
+    }
+
+    /**
+     * @param slist the slist to set
+     */
+    public void setSlist(ListView<String> slist) {
+        this.slist = slist;
+    }
 
     /**
      * @return the AnnouncementsLabel
@@ -378,6 +453,8 @@ public class SBMainGUI extends GridPane{
     private Button LogoutBTN = new Button ("Logout");
     private Button UploadFileBTN = new Button ("Upload File");
     private Button DoneBTN = new Button ("Done");
+    private Button addGroupBTN = new Button ("Add to Group");
+    private Button createGroupBTN = new Button ("Create Group");
     
     
       private Label NewFriendLBL= new Label("Please Enter Username of Friend");
@@ -402,23 +479,53 @@ public class SBMainGUI extends GridPane{
    private VBox FriendBox = new VBox();
    private VBox Appvbox = new VBox(20);
    private VBox Welcomevbox = new VBox(20);
+  private ListView<String> slist = new ListView();
+  private ListView<String> glist = new ListView(); 
+  private TableView grouptable = new TableView();
+  private String fvalue = "";
   
   
+              TableColumn groupname = new TableColumn ("Group Name");
+                       TableColumn groupid = new TableColumn ("Group ID");
+                       TableColumn groupcid = new TableColumn("Course ID");
+                       TableColumn groupsub = new TableColumn ("Course Subject");
+                       TableColumn groupinst = new TableColumn ("Course Instructor");
+        final Label tablelbl = new Label("StudyBuddy Sessions");
     public SBMainGUI()
             
             
     {  
         
+                       slist.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+    @Override
+    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+       fvalue = newValue;
        
+        System.out.println("favlue is" + fvalue );
+    }
+}
+                 );
+                       
+                 
+                       tablelbl.setFont(new Font("Arial",20));
+           ;
+           
+           grouptable.setEditable(true);
+                      grouptable.getColumns().addAll(groupid,groupname,groupcid,groupsub,groupinst);
+                      
+                      
+                     
               Appvbox.setStyle("-fx-background-color: #52C286");
         date.setPromptText("Appointment Date");
    
           Friends.setStyle("-fx-border-color: black;");
+          Friends.setStyle("-fx-background-color:black;");
      
            Friends.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 25));
        Session.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
         WelcomeLBL.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 26));
-       
+      
+         
         iv.setImage(image);
         iv.setFitHeight(20);
         iv.setFitWidth(20);
@@ -430,18 +537,17 @@ public class SBMainGUI extends GridPane{
        
         DisplayFriendTA.setMaxWidth(300);
         DisplayFriendTA.setMaxHeight(200);
-        
+    
+        slist.setMaxSize(100, 200);
         AnnouncementTA.setMaxWidth(300);
         AnnouncementTA.setMaxHeight(200);
-        Appvbox.getChildren().addAll(Session,DisplaySessionTA,date,CreateAppBTN,UploadFileBTN,LogoutBTN,Friends,DisplayFriendTA,FriendSearchBTN);
-        
-      
+        Appvbox.getChildren().addAll(Session,DisplaySessionTA,date,CreateAppBTN,UploadFileBTN,LogoutBTN,Friends,slist,FriendSearchBTN,addGroupBTN);
+       Apphbox.getChildren().addAll(grouptable,createGroupBTN);
     
+        Apphbox.setPadding(new Insets(0,100,0,0));
         
-        Session.setPadding(new Insets(10, 10, 10, 10));
  
-        Session.setGraphic(iv);
-        this.add(Welcomevbox,3,0);
+     
        
       
    
