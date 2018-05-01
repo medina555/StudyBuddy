@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="StudyBuddy.jar" size="708889" download="eager" />
+    <jar href="StudyBuddy.jar" size="707630" download="eager" />
     <jar href="lib\javax.mail.jar" size="608084" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.46.jar" size="1004838" download="eager" />
   </resources>

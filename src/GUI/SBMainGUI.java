@@ -575,7 +575,7 @@ public class SBMainGUI extends GridPane{
     private Button FriendSearchBTN= new Button("Friend Search ");
     private Button AddFriendBTN = new Button("Add Friend ");
     private Button HideFriendBTN = new Button("Hide Friends");
-    private Button CreateAppBTN = new Button ("Submit Appointment Date");
+    private Button CreateAppBTN = new Button ("Send an Email");
     private Button LogoutBTN = new Button ("Logout");
     private Button UploadFileBTN = new Button ("Upload File");
     private Button DoneBTN = new Button ("Done");
@@ -670,8 +670,8 @@ public class SBMainGUI extends GridPane{
         slist.setMaxSize(100, 200);
         AnnouncementTA.setMaxWidth(300);
         AnnouncementTA.setMaxHeight(200);
-        Appvbox.getChildren().addAll(CreateAppBTN,UploadFileBTN,LogoutBTN,Friends,slist,FriendSearchBTN,addGroupBTN);
-       Apphbox.getChildren().addAll(grouptable,createGroupBTN,refreshGroupBTN);
+        Appvbox.getChildren().addAll(CreateAppBTN,UploadFileBTN,LogoutBTN,Friends,slist,FriendSearchBTN);
+       Apphbox.getChildren().addAll(grouptable,createGroupBTN);
     
         Apphbox.setPadding(new Insets(0,100,0,0));
         

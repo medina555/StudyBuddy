@@ -16,6 +16,7 @@ import GUI.SBCreateGroupGUI;
 import GUI.SBLoginGUI;
 import GUI.SBMainGUI;
 import GUI.SBNewAccountFormGUI;
+import GUI.SBNewEmailForm;
 import MAIN.SBMain;
 import java.io.File;
 import java.sql.Connection;
@@ -89,6 +90,7 @@ public class SBController {
  
    SBMainGUI mGUI = new SBMainGUI();
    SBCreateGroupGUI sbcreategroup = new SBCreateGroupGUI();
+   SBNewEmailForm sbcreateemail = new SBNewEmailForm();
    StudentDataModel sdm;
    SBLoginGUI lGUI ;
    SBNewAccountFormGUI snafGUI;
@@ -643,6 +645,95 @@ public class SBController {
                   
                   
                   
+                               mGUI.getCreateAppBTN().setOnAction(
+                          
+            
+                    
+                    new EventHandler<ActionEvent>()
+         {
+             @Override
+             public void handle (ActionEvent event)
+             {
+                    Stage window = new Stage();
+                 VBox gvbox2 =  sbcreateemail;
+       
+    
+       
+		
+               
+                 BorderPane root2 = new BorderPane();
+                 root2.setCenter(gvbox2);
+	
+             Scene   scene3 = new Scene(root2,1000,1000);
+                
+		
+	    
+        
+       window.setTitle("Create New Group");
+       
+        window.setScene(scene3);
+        window.show();
+              
+          
+             }
+         }
+                            );
+                    
+                    
+                    
+                    
+                    
+                                           sbcreateemail.geteSubmitBTN().setOnAction(
+                          
+            
+                    
+                    new EventHandler<ActionEvent>()
+         {
+             @Override
+             public void handle (ActionEvent event)
+             {
+                                          try
+        {        String host = "smtp.outlook.com";
+		String eport = "587";
+		String emailFrom = "amed55@live.com";
+		String epassword = "chiodos5";
+
+		// message info
+		String emailTo = sbcreateemail.getEtoTF().getText();
+		String esubject = sbcreateemail.getEsubTF().getText();
+		String emessage = sbcreateemail.getEmessageTF().getText();
+
+		// attachments
+		String[] eattachFiles = new String[1];
+		eattachFiles[0] = sbcreateemail.getFileTF().getText();
+                
+		//attachFiles[2] = "e:/Test/Video.mp4";
+		
+		// CC emails
+		String[] ccEmails ={""};
+			EmailAttachmentSender.sendEmailWithAttachments(host, eport, emailFrom, epassword, emailTo,
+				esubject, emessage, eattachFiles);
+			System.out.println("Email sent.");
+        }
+           catch (Exception ex) {
+			System.out.println("Could not send email.");
+			ex.printStackTrace();
+		}
+              
+          
+             }
+         }
+                            );
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                   
                   
                   
@@ -759,33 +850,7 @@ public class SBController {
                     errorAlert.showAndWait();  
             
                           
-                                        try
-        {        String host = "smtp.outlook.com";
-		String eport = "587";
-		String emailFrom = "amed55@live.com";
-		String epassword = "chiodos5555";
-
-		// message info
-		String emailTo = email;
-		String esubject = "Welcome to Study Buddy!";
-		String emessage = " Your new login information is  " + "username: "+ username + "\n" +"password" + password;
-
-		// attachments
-		String[] eattachFiles = new String[1];
-		eattachFiles[0] = "UTRGV.png";
-                
-		//attachFiles[2] = "e:/Test/Video.mp4";
-		
-		// CC emails
-		String[] ccEmails ={""};
-			EmailAttachmentSender.sendEmailWithAttachments(host, eport, emailFrom, epassword, emailTo,
-				esubject, emessage, eattachFiles);
-			System.out.println("Email sent.");
-        }
-           catch (Exception ex) {
-			System.out.println("Could not send email.");
-			ex.printStackTrace();
-		}
+        
 
 	
                            }  
@@ -811,7 +876,7 @@ public class SBController {
            
                
                
-                  
+                 
        
                
                
