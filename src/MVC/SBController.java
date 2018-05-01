@@ -864,7 +864,7 @@ public class SBController {
                  Database mydb2 = Database.getSingletonOfdatabase(); 
                         try { 
                             
-                            
+                            String searchuser = sbaf.getFriendTF().getText();
                                   int friend1 = 0; 
                      int friend2 = 0; 
                             ListView<String> listView = mGUI.getSlist();
@@ -879,14 +879,22 @@ public class SBController {
                                  friend1 = myrs.getInt("studentid");
                                  System.out.println("friend 1 is " +friend1);
                                  
-                                
+                              ListView<String> listView1 = mGUI.getSlist();   
                                  
-                             
-                         
+                          ResultSet myrs2 = stmt.executeQuery("SELECT DISTINCT (username),studentid from student, friend where idFriend2!='"+friend1+"' and username='"+searchuser+"'");        
+                         while (myrs2.next())
+                         {
+                             System.out.println("username is " + myrs2.getString("username"));
+                              mGUI.getSlist().getItems().add(myrs2.getString("username"));
+                              friend2 = myrs2.getInt("studentid");
+                         }
               
                            
-                    
-                       
+                         
+                            PreparedStatement pstmt = Conn.prepareStatement("INSERT into friend VALUES (?,?)");
+                            pstmt.setInt(1, friend1);
+                            pstmt.setInt(2, friend2);
+                            pstmt.executeUpdate();
                      }
                      
                      
