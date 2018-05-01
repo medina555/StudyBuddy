@@ -5,10 +5,16 @@
  */
 package MVC;
 
+import DATABASE.Database;
 import DATAMODEL.Group;
 import DATAMODEL.GroupDataModel;
 import GUI.SBCreateGroupGUI;
+import GUI.SBLoginGUI;
 import GUI.SBMainGUI;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,13 +32,30 @@ import javafx.stage.Stage;
  * @author Andrew
  */
 public class GroupController {
+
+    /**
+     * @return the oGroup
+     */
+    public ObservableList<Group> getoGroup() {
+        return oGroup;
+    }
+
+    /**
+     * @param oGroup the oGroup to set
+     */
+    public void setoGroup(ObservableList<Group> oGroup) {
+        this.oGroup = oGroup;
+    }
     Group group;
     ArrayList<Group> grouplist = new ArrayList();
    SBCreateGroupGUI creatgroupGUI;
    SBMainGUI sbmain; 
+   SBLoginGUI sblogin ; 
+        
    GroupDataModel gdm = new GroupDataModel();
+  
    
-       ObservableList<Group> oGroup = FXCollections.observableArrayList(gdm.getGrouplist());   
+      private ObservableList<Group> oGroup = FXCollections.observableArrayList(gdm.getGrouplist());   
     public GroupController( GroupDataModel gdmm, SBCreateGroupGUI cg, SBMainGUI smain)
     {
 
@@ -47,101 +70,16 @@ public class GroupController {
          
          
          
-                 sbmain.getCreateGroupBTN().setOnAction(
-                          
-            
-                    
-                    new EventHandler<ActionEvent>()
-         {
-             @Override
-             public void handle (ActionEvent event)
-             {
-                    Stage window = new Stage();
-                 VBox gvbox =  creatgroupGUI;
-       
-    
-       
-		
                
-                 BorderPane root2 = new BorderPane();
-                 root2.setCenter(gvbox);
-	
-             Scene   scene3 = new Scene(root2,1000,1000);
-                
-		
-	    
-        
-       window.setTitle("Create New Group");
-       
-        window.setScene(scene3);
-        window.show();
-              
-          
-             }
-         }
-                            );
                  
                  
                  
-                 
-                      creatgroupGUI.getSubmitBTN().setOnAction(
-                          
             
-                    
-                    new EventHandler<ActionEvent>()
-         {
-             @Override
-             public void handle (ActionEvent event)
-             {  
-                
-                 TableView gview = sbmain.getGrouptable();
-                 ArrayList glist2 = gdm.getGrouplist();
-             
-                 int gid = Integer.parseInt( creatgroupGUI.getGidTF().getText());
-                 String gname = creatgroupGUI.getGnameTF().getText();
-                 int cid = Integer.parseInt( creatgroupGUI.getCidTF().getText());
-                 String ginst =  creatgroupGUI.getGinstructorTF().getText();
-                 String gsub = creatgroupGUI.getSubTF().getText();
-                 
-                 System.out.println("gid = " +gid);
-                 
-                 Group gr = new Group(gname, gid, gsub, ginst, cid);
-                  
-                 gdm.setGroup(gr);
-                 
-                
-       
-             
-              sbmain.getGroupname().setCellValueFactory(
-                new PropertyValueFactory<Group, String>("gname"));
-                  
-              sbmain.getGroupid().setCellValueFactory(
-                new PropertyValueFactory<Group, String>("gid"));
-                  
-              sbmain.getGroupsub().setCellValueFactory(
-                new PropertyValueFactory<Group, String>("gsubject"));
-                  
-              sbmain.getGroupinst().setCellValueFactory(
-                new PropertyValueFactory<Group, String>("ginstructor"));
-                  
-              sbmain.getGroupcid().setCellValueFactory(
-                new PropertyValueFactory<Group, String>("gname"));
-              
-              
-              
-              
-              sbmain.getGrouptable().setItems(oGroup);
-              
-              oGroup.add(gr);
-          
-             }
-         }
-                            );    
                  
                  
                  
                  
-                 sbmain.getGrouptable().setItems(oGroup);
+         
                  
                  
                  

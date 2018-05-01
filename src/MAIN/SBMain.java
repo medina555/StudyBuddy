@@ -67,11 +67,11 @@ public class SBMain extends Application {
                
              
 		Scene scene = new Scene(sblogingui, 1000, 500,Color.BLUE);
-       
+             sc.setScene(scene);
  
       
             
-	  mgui.getLogoutBTN().setOnAction(e ->  window.close())	;
+	
 	 
         
         primaryStage.setTitle("Study Buddy");

@@ -102,17 +102,17 @@ public class SBCreateGroupGUI extends VBox{
     }
 
     /**
-     * @return the ginstructorLBL
+     * @return the dowLBL
      */
-    public Label getGinstructorLBL() {
-        return ginstructorLBL;
+    public Label getDowLBL() {
+        return dowLBL;
     }
 
     /**
-     * @param ginstructorLBL the ginstructorLBL to set
+     * @param dowLBL the dowLBL to set
      */
-    public void setGinstructorLBL(Label ginstructorLBL) {
-        this.ginstructorLBL = ginstructorLBL;
+    public void setDowLBL(Label dowLBL) {
+        this.dowLBL = dowLBL;
     }
 
     /**
@@ -188,7 +188,7 @@ public class SBCreateGroupGUI extends VBox{
     private Label gnameLBL = new Label ("Group Name");
      private Label cidLBL = new Label ("Course ID Number");
       private Label subLBL = new Label ("Subject");
-     private Label ginstructorLBL = new Label ("Course Instructor");
+     private Label dowLBL = new Label ("Days of Week (MW or TTh");
     
     
           private TextField gidTF = new TextField();
@@ -203,8 +203,16 @@ public class SBCreateGroupGUI extends VBox{
     
     
      public SBCreateGroupGUI()
+            
      {
-         this.getChildren().addAll(gidLBL,gidTF,gnameLBL,gnameTF,cidLBL,cidTF,subLBL,subTF,ginstructorLBL,ginstructorTF, SubmitBTN);
+          this.setStyle("-fx-background-color:#ffffcc");
+          gidTF.setMaxSize(300,20);
+          gnameTF.setMaxSize(300, 20);
+          cidTF.setMaxSize(300,20);
+          subTF.setMaxSize(300,20);
+          ginstructorTF.setMaxSize(300,200);
+         this.getChildren().addAll(gidLBL,gidTF,gnameLBL,gnameTF,cidLBL,cidTF,subLBL,subTF,dowLBL,ginstructorTF, SubmitBTN);
+         
          
      }
      

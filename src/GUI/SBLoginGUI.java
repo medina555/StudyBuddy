@@ -34,6 +34,20 @@ import javafx.scene.text.FontWeight;
 public class SBLoginGUI extends GridPane {
 
     /**
+     * @return the currentuser
+     */
+    public String getCurrentuser() {
+        return currentuser;
+    }
+
+    /**
+     * @param currentuser the currentuser to set
+     */
+    public void setCurrentuser(String currentuser) {
+        this.currentuser = currentuser;
+    }
+
+    /**
      * @return the PasswordTF
      */
     public PasswordField getPasswordTF() {
@@ -226,6 +240,7 @@ public class SBLoginGUI extends GridPane {
     private Label Title = new Label ("Welcome to Study Buddy!");
     private Label CopyWrite = new Label ("Omnibus Inc " + "\u00a9");
    private VBox titlevbox = new VBox();
+   private String currentuser;
    
     
     ImageView iv = new ImageView();
@@ -244,7 +259,7 @@ public class SBLoginGUI extends GridPane {
     {
       UserNameTF.setPromptText("username");
       PasswordTF.setPromptText("password");
-      
+      currentuser = UserNameTF.getText();
      this.setStyle("-fx-background-color: #C0C0C0;");
      this.setStyle("-fx-background-image: url('sblg1.JPG')");
      

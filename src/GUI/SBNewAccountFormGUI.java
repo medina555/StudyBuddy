@@ -358,7 +358,7 @@ public class SBNewAccountFormGUI extends GridPane
       
     public SBNewAccountFormGUI()
     {
-        
+         this.setStyle("-fx-background-image: url('sblg1.JPG')");
        this.setWidth(500);
        this.setHeight(500);
           
@@ -378,7 +378,7 @@ public class SBNewAccountFormGUI extends GridPane
         
         
         
-            this.setStyle("-fx-background-color: #3BB0DB;");
+     
             this.setVgap(20);
         RButtonhbox.getChildren().addAll(MButton,FButton);
         NATitle.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 30));

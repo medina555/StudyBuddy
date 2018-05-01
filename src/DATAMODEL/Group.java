@@ -12,6 +12,20 @@ package DATAMODEL;
 public class Group {
 
     /**
+     * @return the currentuser
+     */
+    public String getCurrentuser() {
+        return currentuser;
+    }
+
+    /**
+     * @param currentuser the currentuser to set
+     */
+    public void setCurrentuser(String currentuser) {
+        this.currentuser = currentuser;
+    }
+
+    /**
      * @return the gname
      */
     public String getGname() {
@@ -54,17 +68,17 @@ public class Group {
     }
 
     /**
-     * @return the ginstructor
+     * @return the daysofweek
      */
-    public String getGinstructor() {
-        return ginstructor;
+    public String getDaysofweek() {
+        return daysofweek;
     }
 
     /**
-     * @param ginstructor the ginstructor to set
+     * @param daysofweek the daysofweek to set
      */
-    public void setGinstructor(String ginstructor) {
-        this.ginstructor = ginstructor;
+    public void setDaysofweek(String daysofweek) {
+        this.daysofweek = daysofweek;
     }
 
     /**
@@ -83,14 +97,15 @@ public class Group {
     private String gname;
     private int gid;
     private String gsubject;
-    private String ginstructor;
+    private String daysofweek;
     private int courseid;
+    private String currentuser;
 
     public Group(String gname, int gid, String gsubject, String ginstructor, int courseid) {
         this.gname = gname;
         this.gid = gid;
         this.gsubject = gsubject;
-        this.ginstructor = ginstructor;
+        this.daysofweek = ginstructor;
         this.courseid = courseid;
     }
     

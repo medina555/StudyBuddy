@@ -35,6 +35,48 @@ import javafx.scene.text.FontWeight;
 public class SBMainGUI extends GridPane{
 
     /**
+     * @return the mylist
+     */
+    public ListView<String> getMylist() {
+        return mylist;
+    }
+
+    /**
+     * @param mylist the mylist to set
+     */
+    public void setMylist(ListView<String> mylist) {
+        this.mylist = mylist;
+    }
+
+    /**
+     * @return the Gvbox
+     */
+    public VBox getGvbox() {
+        return Gvbox;
+    }
+
+    /**
+     * @param Gvbox the Gvbox to set
+     */
+    public void setGvbox(VBox Gvbox) {
+        this.Gvbox = Gvbox;
+    }
+
+    /**
+     * @return the refreshGroupBTN
+     */
+    public Button getRefreshGroupBTN() {
+        return refreshGroupBTN;
+    }
+
+    /**
+     * @param refreshGroupBTN the refreshGroupBTN to set
+     */
+    public void setRefreshGroupBTN(Button refreshGroupBTN) {
+        this.refreshGroupBTN = refreshGroupBTN;
+    }
+
+    /**
      * @return the grouptable
      */
     public TableView getGrouptable() {
@@ -539,6 +581,7 @@ public class SBMainGUI extends GridPane{
     private Button DoneBTN = new Button ("Done");
     private Button addGroupBTN = new Button ("Add to Group");
     private Button createGroupBTN = new Button ("Create Group");
+    private Button refreshGroupBTN = new Button ("Refresh Group");
     
     
       private Label NewFriendLBL= new Label("Please Enter Username of Friend");
@@ -559,12 +602,14 @@ public class SBMainGUI extends GridPane{
   ImageView iv = new ImageView();
    Image image = new Image("appointment.png");
    private HBox Apphbox = new HBox(10);
+   private VBox Gvbox = new VBox();
    private HBox MainBox = new HBox();
    private VBox FriendBox = new VBox();
    private VBox Appvbox = new VBox(20);
    private VBox Welcomevbox = new VBox(20);
   private ListView<String> slist = new ListView();
-  private ListView<String> glist = new ListView(); 
+  private ListView<String> glist = new ListView();
+  private ListView<String> mylist = new ListView();
   private TableView grouptable = new TableView();
   private String fvalue = "";
   
@@ -573,7 +618,7 @@ public class SBMainGUI extends GridPane{
                        private TableColumn groupid = new TableColumn ("Group ID");
                        private TableColumn groupcid = new TableColumn("Course ID");
                        private TableColumn groupsub = new TableColumn ("Course Subject");
-                       private TableColumn groupinst = new TableColumn ("Course Instructor");
+                       private TableColumn groupinst = new TableColumn ("Days of Week ");
         final Label tablelbl = new Label("StudyBuddy Sessions");
     public SBMainGUI()
             
@@ -603,7 +648,7 @@ public class SBMainGUI extends GridPane{
         date.setPromptText("Appointment Date");
    
           Friends.setStyle("-fx-border-color: black;");
-          Friends.setStyle("-fx-background-color:black;");
+         
      
            Friends.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 25));
        Session.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
@@ -625,8 +670,8 @@ public class SBMainGUI extends GridPane{
         slist.setMaxSize(100, 200);
         AnnouncementTA.setMaxWidth(300);
         AnnouncementTA.setMaxHeight(200);
-        Appvbox.getChildren().addAll(Session,DisplaySessionTA,date,CreateAppBTN,UploadFileBTN,LogoutBTN,Friends,slist,FriendSearchBTN,addGroupBTN);
-       Apphbox.getChildren().addAll(grouptable,createGroupBTN);
+        Appvbox.getChildren().addAll(CreateAppBTN,UploadFileBTN,LogoutBTN,Friends,slist,FriendSearchBTN,addGroupBTN);
+       Apphbox.getChildren().addAll(grouptable,createGroupBTN,refreshGroupBTN);
     
         Apphbox.setPadding(new Insets(0,100,0,0));
         
