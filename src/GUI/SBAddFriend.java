@@ -17,6 +17,20 @@ import javafx.scene.layout.GridPane;
 public class SBAddFriend extends GridPane{
 
     /**
+     * @return the statuslabel
+     */
+    public Label getStatuslabel() {
+        return statuslabel;
+    }
+
+    /**
+     * @param statuslabel the statuslabel to set
+     */
+    public void setStatuslabel(Label statuslabel) {
+        this.statuslabel = statuslabel;
+    }
+
+    /**
      * @return the addfriendBTN
      */
     public Button getAddfriendBTN() {
@@ -60,12 +74,13 @@ public class SBAddFriend extends GridPane{
     private Label friendlabel = new Label("Please enter the username of friend you wish to add");
     private TextField friendTF = new TextField();
     private Button addfriendBTN = new Button("Add Friend");
-    
+    private Label statuslabel = new Label("");
     
     public SBAddFriend()
     {
+      
         this.addRow(1,friendlabel);
-        this.addRow(2,friendTF,addfriendBTN);
+        this.addRow(2,friendTF,addfriendBTN,statuslabel);
         
     }
     

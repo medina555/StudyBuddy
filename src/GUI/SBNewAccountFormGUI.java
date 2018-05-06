@@ -345,10 +345,10 @@ public class SBNewAccountFormGUI extends GridPane
             private HBox RButtonhbox = new HBox();
             
             
-      public boolean notEmpty(TextField tf1, TextField tf2,TextField tf3, TextField tf4, TextField tf5, TextField tf6)
+      public boolean isEmpty(TextField tf1, TextField tf2,TextField tf3, TextField tf4, TextField tf5, TextField tf6)
               
       { boolean ne = false; 
-          if (!tf1.getText().isEmpty()&&!tf2.getText().isEmpty()&&!tf3.getText().isEmpty()&&!tf4.getText().isEmpty()&&!tf5.getText().isEmpty()&&!tf6.getText().isEmpty())
+          if (tf1.getText().isEmpty()||tf2.getText().isEmpty()||tf3.getText().isEmpty()||tf4.getText().isEmpty()||tf5.getText().isEmpty()||tf6.getText().isEmpty())
           {
               ne = true;
               
@@ -358,7 +358,7 @@ public class SBNewAccountFormGUI extends GridPane
       
     public SBNewAccountFormGUI()
     {
-        
+         this.setStyle("-fx-background-image: url('sblg1.JPG')");
        this.setWidth(500);
        this.setHeight(500);
           
@@ -378,7 +378,7 @@ public class SBNewAccountFormGUI extends GridPane
         
         
         
-            this.setStyle("-fx-background-color: #3BB0DB;");
+     
             this.setVgap(20);
         RButtonhbox.getChildren().addAll(MButton,FButton);
         NATitle.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 30));
