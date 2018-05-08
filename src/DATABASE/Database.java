@@ -68,7 +68,7 @@ public class Database {
      {
           try
             {
-            conn =   DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/studybuddy1", "root", "medina55");
+            conn =   DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/studybuddy", "root", "medina55");
             myStmt = conn.createStatement();
             myRs = myStmt.executeQuery("select * from student");
             

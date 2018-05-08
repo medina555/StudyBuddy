@@ -31,9 +31,7 @@ import javafx.stage.Stage;
  */
 public class SBMain extends Application {
 
-    /**
-     * @return the window
-     */
+   
 
     
    

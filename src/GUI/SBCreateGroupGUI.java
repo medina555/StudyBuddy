@@ -45,20 +45,7 @@ public class SBCreateGroupGUI extends VBox{
         this.glist = glist;
     }
 
-    /**
-     * @return the gidLBL
-     */
-    public Label getGidLBL() {
-        return gidLBL;
-    }
-
-    /**
-     * @param gidLBL the gidLBL to set
-     */
-    public void setGidLBL(Label gidLBL) {
-        this.gidLBL = gidLBL;
-    }
-
+ 
     /**
      * @return the gnameLBL
      */
@@ -115,19 +102,7 @@ public class SBCreateGroupGUI extends VBox{
         this.dowLBL = dowLBL;
     }
 
-    /**
-     * @return the gidTF
-     */
-    public TextField getGidTF() {
-        return gidTF;
-    }
-
-    /**
-     * @param gidTF the gidTF to set
-     */
-    public void setGidTF(TextField gidTF) {
-        this.gidTF = gidTF;
-    }
+  
 
     /**
      * @return the gnameTF
@@ -184,14 +159,14 @@ public class SBCreateGroupGUI extends VBox{
     public void setGinstructorTF(TextField ginstructorTF) {
         this.ginstructorTF = ginstructorTF;
     }
-     private Label gidLBL = new Label ("Group ID:");
+  
     private Label gnameLBL = new Label ("Group Name");
      private Label cidLBL = new Label ("Course ID Number");
       private Label subLBL = new Label ("Subject");
      private Label dowLBL = new Label ("Days of Week (MW or TTh");
     
     
-          private TextField gidTF = new TextField();
+      
      private TextField gnameTF = new TextField();
     private TextField cidTF = new TextField();
      private TextField subTF = new TextField();
@@ -206,19 +181,19 @@ public class SBCreateGroupGUI extends VBox{
             
      {
           this.setStyle("-fx-background-color:#ffffcc");
-          gidTF.setMaxSize(300,20);
+  
           gnameTF.setMaxSize(300, 20);
           cidTF.setMaxSize(300,20);
           subTF.setMaxSize(300,20);
           ginstructorTF.setMaxSize(300,200);
-         this.getChildren().addAll(gidLBL,gidTF,gnameLBL,gnameTF,cidLBL,cidTF,subLBL,subTF,dowLBL,ginstructorTF, SubmitBTN);
+         this.getChildren().addAll(gnameLBL,gnameTF,cidLBL,cidTF,subLBL,subTF,dowLBL,ginstructorTF, SubmitBTN);
          
          
      }
      
     public void clearfieldgroup()
     {
-        gidTF.clear();
+     
         cidTF.clear();
         gnameTF.clear();
         ginstructorTF.clear();

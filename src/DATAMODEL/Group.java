@@ -42,16 +42,6 @@ public class Group {
     /**
      * @return the gid
      */
-    public int getGid() {
-        return gid;
-    }
-
-    /**
-     * @param gid the gid to set
-     */
-    public void setGid(int gid) {
-        this.gid = gid;
-    }
 
     /**
      * @return the gsubject
@@ -95,15 +85,14 @@ public class Group {
         this.courseid = courseid;
     }
     private String gname;
-    private int gid;
     private String gsubject;
     private String daysofweek;
     private int courseid;
     private String currentuser;
 
-    public Group(String gname, int gid, String gsubject, String ginstructor, int courseid) {
+    public Group(String gname,  String gsubject, String ginstructor, int courseid) {
         this.gname = gname;
-        this.gid = gid;
+   
         this.gsubject = gsubject;
         this.daysofweek = ginstructor;
         this.courseid = courseid;

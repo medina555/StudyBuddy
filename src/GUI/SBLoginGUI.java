@@ -34,6 +34,20 @@ import javafx.scene.text.FontWeight;
 public class SBLoginGUI extends GridPane {
 
     /**
+     * @return the iv
+     */
+    public ImageView getIv() {
+        return iv;
+    }
+
+    /**
+     * @param iv the iv to set
+     */
+    public void setIv(ImageView iv) {
+        this.iv = iv;
+    }
+
+    /**
      * @return the currentuser
      */
     public String getCurrentuser() {
@@ -243,8 +257,8 @@ public class SBLoginGUI extends GridPane {
    private String currentuser;
    
     
-    ImageView iv = new ImageView();
-   Image image = new Image("studygroup.png");
+    private ImageView iv = new ImageView();
+   Image image = new Image("sblogo.JPG");
    
    
   
@@ -264,17 +278,16 @@ public class SBLoginGUI extends GridPane {
      this.setStyle("-fx-background-image: url('sblg1.JPG')");
      
      iv.setImage(image);
-     iv.setFitHeight(100);
-     iv.setFitWidth(100);
+     iv.setFitHeight(200);
+     iv.setFitWidth(300);
      
         this.setAlignment(Pos.CENTER);
-     titlevbox.getChildren().addAll(iv,Title);
-     titlevbox.setStyle("-fx-background-color : #C0C0C0;");
-        Title.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
+     titlevbox.getChildren().addAll(iv);
+    
         Title.setPadding(new Insets(10,10,50,10));
         LoginVB.getChildren().addAll(UserNameLBL,UserNameTF,PassWordLBL,PasswordTF);
         ButtonHB.getChildren().addAll(CreateAccountBTN,LoginBTN);
-        this.addRow(0,titlevbox);
+        this.addRow(0,iv);
      
         this.addRow(2, LoginVB);
         this.addRow(3, ButtonHB);

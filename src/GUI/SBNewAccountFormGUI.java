@@ -26,32 +26,19 @@ public class SBNewAccountFormGUI extends GridPane
 {
 
     /**
-     * @return the SBid
+     * @return the MajorBox
      */
-    public Label getSBid() {
-        return SBid;
+    public ChoiceBox<String> getMajorBox() {
+        return MajorBox;
     }
 
     /**
-     * @param SBid the SBid to set
+     * @param MajorBox the MajorBox to set
      */
-    public void setSBid(Label SBid) {
-        this.SBid = SBid;
+    public void setMajorBox(ChoiceBox<String> MajorBox) {
+        this.MajorBox = MajorBox;
     }
 
-    /**
-     * @return the SBidTF
-     */
-    public TextField getSBidTF() {
-        return SBidTF;
-    }
-
-    /**
-     * @param SBidTF the SBidTF to set
-     */
-    public void setSBidTF(TextField SBidTF) {
-        this.SBidTF = SBidTF;
-    }
 
     /**
      * @return the NATitle
@@ -300,7 +287,7 @@ public class SBNewAccountFormGUI extends GridPane
      private ChoiceBox<String> EmailBox = new ChoiceBox<String>();
      
      
-     
+      private ChoiceBox<String> MajorBox = new ChoiceBox<String>();
      
      
        
@@ -333,8 +320,7 @@ public class SBNewAccountFormGUI extends GridPane
     private RadioButton FButton = new RadioButton ("Female");
     private Label NATitle = new Label("New Studdy Buddy Account Form");
      
-     private Label SBid = new Label ("School id");
-     private TextField SBidTF = new TextField();
+    
      private TextField fnameTF = new TextField();
     private TextField lnameTF = new TextField();
      private TextField unameTF = new TextField();
@@ -345,10 +331,10 @@ public class SBNewAccountFormGUI extends GridPane
             private HBox RButtonhbox = new HBox();
             
             
-      public boolean isEmpty(TextField tf1, TextField tf2,TextField tf3, TextField tf4, TextField tf5, TextField tf6)
+      public boolean isEmpty(TextField tf1, TextField tf2,TextField tf3, TextField tf4)
               
       { boolean ne = false; 
-          if (tf1.getText().isEmpty()||tf2.getText().isEmpty()||tf3.getText().isEmpty()||tf4.getText().isEmpty()||tf5.getText().isEmpty()||tf6.getText().isEmpty())
+          if (tf1.getText().isEmpty()||tf2.getText().isEmpty()||tf3.getText().isEmpty()||tf4.getText().isEmpty())
           {
               ne = true;
               
@@ -356,9 +342,46 @@ public class SBNewAccountFormGUI extends GridPane
           return ne; 
       }
       
+      
+      
+      
+      
+         public void clearFields()
+              
+      {
+          fnameTF.clear();
+          lnameTF.clear();
+          majorlabelTF.clear();
+          emailTF.clear();
+          passTF.clear();
+          unameTF.clear();
+   
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
     public SBNewAccountFormGUI()
     {
-         this.setStyle("-fx-background-image: url('sblg1.JPG')");
+        
+        NATitle.setStyle("-fx-text-fill: white;");
+        fname.setStyle("-fx-text-fill: white;");
+        lname.setStyle("-fx-text-fill: white;");
+        email.setStyle("-fx-text-fill: white;");
+        slabel.setStyle("-fx-text-fill: white;");
+        uname.setStyle("-fx-text-fill: white;");
+        pass.setStyle("-fx-text-fill: white;");
+        majorlabel.setStyle("-fx-text-fill: white;");
+        
+         this.setStyle("-fx-background-image: url('sblogin1.jpg')");
        this.setWidth(500);
        this.setHeight(500);
           
@@ -375,10 +398,15 @@ public class SBNewAccountFormGUI extends GridPane
         
         EmailBox.setValue("@utrgv.edu");
         
+        MajorBox.getItems().add("CSCI");
+        MajorBox.getItems().add("ART");
+        MajorBox.getItems().add("ENG");
+        MajorBox.getItems().add("MATH");
+         MajorBox.getItems().add("CMPE");
+         MajorBox.setValue("CSCI");
         
         
-        
-     
+         
             this.setVgap(20);
         RButtonhbox.getChildren().addAll(MButton,FButton);
         NATitle.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 30));
@@ -387,11 +415,10 @@ public class SBNewAccountFormGUI extends GridPane
         this.addRow(3,lname,lnameTF);
         this.addRow(4,uname,unameTF);
         this.addRow(5,pass,passTF);
-        this.addRow(6, SBid,SBidTF);
-        this.addRow(7, email,emailTF,EmailBox);
-         this.addRow(8,slabel,SchoolBox);
-         this.addRow(9, majorlabel,majorlabelTF);
-        this.addRow(10,CreateAccBTN);
+        this.addRow(6, email,emailTF,EmailBox);
+         this.addRow(7,slabel,SchoolBox);
+         this.addRow(8,majorlabel,MajorBox);
+        this.addRow(9,CreateAccBTN);
          
 		
     }
