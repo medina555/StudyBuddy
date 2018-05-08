@@ -78,7 +78,7 @@ public class SBAddFriend extends GridPane{
     
     public SBAddFriend()
     {
-      
+      this.setStyle("-fx-background-color: #80e5ff");
         this.addRow(1,friendlabel);
         this.addRow(2,friendTF,addfriendBTN,statuslabel);
         

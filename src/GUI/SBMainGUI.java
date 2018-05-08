@@ -816,7 +816,7 @@ public class SBMainGUI extends GridPane
         slist.setMaxSize(100, 200);
         AnnouncementTA.setMaxWidth(300);
         AnnouncementTA.setMaxHeight(200);
-        Appvbox.getChildren().addAll(CreateAppBTN, UploadFileBTN, LogoutBTN, Friends, slist, FriendSearchBTN);
+        Appvbox.getChildren().addAll(CreateAppBTN, LogoutBTN, Friends, slist, FriendSearchBTN);
         Apphbox.getChildren().addAll(grouptable,viewGroupInfoBTN, createGroupBTN);
 
         Apphbox.setPadding(new Insets(0, 100, 0, 0));

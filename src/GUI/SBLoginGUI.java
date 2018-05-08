@@ -275,7 +275,7 @@ public class SBLoginGUI extends GridPane {
       PasswordTF.setPromptText("password");
       currentuser = UserNameTF.getText();
      this.setStyle("-fx-background-color: #C0C0C0;");
-     this.setStyle("-fx-background-image: url('sblg1.JPG')");
+     this.setStyle("-fx-background-image: url('sblog55.jpg')");
      
      iv.setImage(image);
      iv.setFitHeight(200);

@@ -487,8 +487,10 @@ public class SBController
             @Override
             public void handle(ActionEvent event)
             {
-                boolean exists = false; 
+                
                 try {
+                 
+                     boolean exists = false;
                     Database mydb3 = Database.getSingletonOfdatabase();
                     Connection conn = mydb3.getConn();
                     Statement mystmt = conn.createStatement();
@@ -498,19 +500,19 @@ public class SBController
                     {
                         if (sbcreategroup.getGnameTF().getText().equals(myrs.getString("groupname")))
                         {
+                            exists = true; 
                                     errorAlert.setHeaderText("ERROR DUPLICATE GROUP NAME");
                             errorAlert.setContentText("The groupname you entered already exists@");
 
                             errorAlert.showAndWait();
                             snafGUI.clearFields();
                             break;
+                       
                             
                         }
                     }
-                } catch (Exception e) {
-                }
                 
-           
+                
                 System.out.println("ok");
                 ObservableList olist1 = FXCollections.observableArrayList(gdm1.getGrouplist());
 
@@ -541,8 +543,7 @@ public class SBController
               
                 
 
-                try
-                {
+               
 
                     Database mydb5 = Database.getSingletonOfdatabase();
                     Connection Conn = mydb5.getConn();
@@ -597,20 +598,20 @@ public class SBController
                  
                   
 
-               
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
             }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            
         }
         );
 
@@ -925,7 +926,7 @@ public class SBController
                 
                 root.setCenter(giGUI);
 
-                Scene scene3 = new Scene(root, 500, 200);
+                Scene scene3 = new Scene(root, 500,800);
 
                 window.setTitle("Study Buddy");
 

@@ -180,7 +180,7 @@ public class SBCreateGroupGUI extends VBox{
      public SBCreateGroupGUI()
             
      {
-          this.setStyle("-fx-background-color:#ffffcc");
+       this.setStyle("-fx-background-color: #80e5ff");
   
           gnameTF.setMaxSize(300, 20);
           cidTF.setMaxSize(300,20);

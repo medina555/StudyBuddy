@@ -164,13 +164,21 @@ public class SBNewEmailForm extends VBox{
       public SBNewEmailForm()
             
      {
-          this.setStyle("-fx-background-color:#ffffcc");
+        
+              this.setStyle("-fx-text-fill: white;");
+       etoLBL.setStyle("-fx-text-fill: white;");
+      esub.setStyle("-fx-text-fill: white;");
+        emessage.setStyle("-fx-text-fill: white;");
+        fileLBL.setStyle("-fx-text-fill: white;");
+    
+         this.setStyle("-fx-background-image: url('sblogin1.jpg')");
+         
           etoTF.setMaxSize(300,20);
           esubTF.setMaxSize(300, 20);
           emessageTF.setMaxSize(300,20);
           fileTF.setMaxSize(300,20);
           
-         this.getChildren().addAll(etoLBL,etoTF,esub,esubTF,emessage,emessageTF,fileLBL,fileTF, eSubmitBTN);
+         this.getChildren().addAll(etoLBL,etoTF,esub,esubTF,emessage,emessageTF, eSubmitBTN);
          
          
      }
