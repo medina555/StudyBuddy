@@ -26,7 +26,7 @@ import javax.mail.internet.MimeMultipart;
 public class EmailAttachmentSender {
 	public static void sendEmailWithAttachments(String host, String port,
 		final String userName, final String password, String toAddress,
-		String subject, String message, String[] attachFiles)
+		String subject, String message)
 		throws AddressException, MessagingException {
 		String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 		
@@ -89,16 +89,7 @@ public class EmailAttachmentSender {
 		multipart.addBodyPart(messageBodyPart);
 
 		// adds attachments
-		if (attachFiles != null && attachFiles.length > 0) {
-			for (String filePath : attachFiles) {
-				MimeBodyPart attachPart = new MimeBodyPart();
-				try {
-					attachPart.attachFile(filePath);
-				} catch (IOException ex) {
-				}
-				multipart.addBodyPart(attachPart);
-			}
-		}
+		
 		// sets the multi-part as e-mail's content
 		msg.setContent(multipart);
 

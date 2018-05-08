@@ -40,6 +40,20 @@ public class SBMainGUI extends GridPane
 {
 
     /**
+     * @return the displayallGroupBTN
+     */
+    public Button getDisplayallGroupBTN() {
+        return displayallGroupBTN;
+    }
+
+    /**
+     * @param displayallGroupBTN the displayallGroupBTN to set
+     */
+    public void setDisplayallGroupBTN(Button displayallGroupBTN) {
+        this.displayallGroupBTN = displayallGroupBTN;
+    }
+
+    /**
      * @return the viewGroupInfoBTN
      */
     public Button getViewGroupInfoBTN() {
@@ -163,21 +177,7 @@ public class SBMainGUI extends GridPane
         this.groupid = groupid;
     }
 
-    /**
-     * @return the groupcid
-     */
-    public TableColumn getGroupcid()
-    {
-        return groupcid;
-    }
 
-    /**
-     * @param groupcid the groupcid to set
-     */
-    public void setGroupcid(TableColumn groupcid)
-    {
-        this.groupcid = groupcid;
-    }
 
     /**
      * @return the groupsub
@@ -688,6 +688,7 @@ public class SBMainGUI extends GridPane
     private Button createGroupBTN = new Button("Create Group");
     private Button refreshGroupBTN = new Button("Refresh Group");
     private Button viewGroupInfoBTN = new Button("View Group Members/Info");
+    private Button displayallGroupBTN = new Button ("Display all Groups");
 
     private Label NewFriendLBL = new Label("Please Enter Username of Friend");
     private TextField NewFriendTF = new TextField();
@@ -717,9 +718,9 @@ public class SBMainGUI extends GridPane
     private String fvalue = "";
     private String gvalue = "";
 
-    private TableColumn groupname = new TableColumn("Group Name");
+    private TableColumn groupname = new TableColumn("My Group Name");
     private TableColumn groupid = new TableColumn("Group ID");
-    private TableColumn groupcid = new TableColumn("Course ID");
+   
     private TableColumn groupsub = new TableColumn("Course Subject");
     private TableColumn groupinst = new TableColumn("Days of Week ");
     final Label tablelbl = new Label("StudyBuddy Sessions");
@@ -755,7 +756,7 @@ public class SBMainGUI extends GridPane
        
        
        
-       
+       displayallGroupBTN.setStyle("-fx-background-color: #008CBA");
        
        
         
@@ -782,7 +783,25 @@ public class SBMainGUI extends GridPane
         
         
         
+    
         
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
         
         
 
@@ -790,7 +809,7 @@ public class SBMainGUI extends GridPane
         ;
 
         grouptable.setEditable(true);
-        grouptable.getColumns().addAll(groupname, groupcid, groupsub, groupinst);
+        grouptable.getColumns().addAll(groupname, groupsub, groupinst);
         grouptable.setPrefSize(400, 400);
         Appvbox.setStyle("-fx-background-color: #52C286");
         date.setPromptText("Appointment Date");
@@ -817,7 +836,7 @@ public class SBMainGUI extends GridPane
         AnnouncementTA.setMaxWidth(300);
         AnnouncementTA.setMaxHeight(200);
         Appvbox.getChildren().addAll(CreateAppBTN, LogoutBTN, Friends, slist, FriendSearchBTN);
-        Apphbox.getChildren().addAll(grouptable,viewGroupInfoBTN, createGroupBTN);
+        Apphbox.getChildren().addAll(grouptable,viewGroupInfoBTN, createGroupBTN,displayallGroupBTN);
 
         Apphbox.setPadding(new Insets(0, 100, 0, 0));
 

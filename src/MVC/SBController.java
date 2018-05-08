@@ -11,6 +11,7 @@ import DATAMODEL.GroupDataModel;
 import DATAMODEL.Student;
 import DATAMODEL.StudentDataModel;
 import EMAIL.EmailAttachmentSender;
+import GUI.AllGroupsGUI;
 import GUI.GroupInfoGUI;
 import GUI.SBAddFriend;
 import GUI.SBCreateGroupGUI;
@@ -92,7 +93,7 @@ public class SBController
     {
         this.myscene = scene;
     }
-
+    AllGroupsGUI agGUI = new AllGroupsGUI();
     SBMainGUI mGUI = new SBMainGUI();
     SBCreateGroupGUI sbcreategroup = new SBCreateGroupGUI();
     SBNewEmailForm sbcreateemail = new SBNewEmailForm();
@@ -107,7 +108,7 @@ public class SBController
     GroupInfoGUI giGUI = new GroupInfoGUI();
 
     ObservableList olist = FXCollections.observableArrayList(gdm1.getGrouplist());
-
+    ObservableList olist2 = FXCollections.observableArrayList(gdm1.getGrouplist());
     Image utrgvimage = new Image("UTRGV.png");
     ImageView utrgviv = new ImageView(utrgvimage);
 
@@ -314,8 +315,7 @@ public class SBController
                                     mGUI.getGroupname().setCellValueFactory(
                                             new PropertyValueFactory<Group, String>("gname"));
 
-                                    mGUI.getGroupid().setCellValueFactory(
-                                            new PropertyValueFactory<Group, String>("gid"));
+                                
 
                                     mGUI.getGroupsub().setCellValueFactory(
                                             new PropertyValueFactory<Group, String>("gsubject"));
@@ -323,8 +323,7 @@ public class SBController
                                     mGUI.getGroupinst().setCellValueFactory(
                                             new PropertyValueFactory<Group, String>("daysofweek"));
 
-                                    mGUI.getGroupcid().setCellValueFactory(
-                                            new PropertyValueFactory<Group, String>("gname"));
+                                 
 
                                     gdm1.setGroup(gr);
 
@@ -487,10 +486,10 @@ public class SBController
             @Override
             public void handle(ActionEvent event)
             {
-                
+                   boolean exists = false;
                 try {
                  
-                     boolean exists = false;
+                  
                     Database mydb3 = Database.getSingletonOfdatabase();
                     Connection conn = mydb3.getConn();
                     Statement mystmt = conn.createStatement();
@@ -512,7 +511,7 @@ public class SBController
                         }
                     }
                 
-                
+            
                 System.out.println("ok");
                 ObservableList olist1 = FXCollections.observableArrayList(gdm1.getGrouplist());
 
@@ -536,13 +535,12 @@ public class SBController
                 mGUI.getGroupinst().setCellValueFactory(
                         new PropertyValueFactory<Group, String>("daysofweek"));
 
-                mGUI.getGroupcid().setCellValueFactory(
-                        new PropertyValueFactory<Group, Integer>("cid"));
+       
                 olist1.add(gr);
                 mGUI.getGrouptable().setItems(olist1);
               
                 
-
+                         
                
 
                     Database mydb5 = Database.getSingletonOfdatabase();
@@ -585,7 +583,7 @@ public class SBController
   
   
   
-  
+                 
   
   
   
@@ -644,6 +642,7 @@ public class SBController
             @Override
             public void handle(ActionEvent event)
             {
+                sbcreateemail.getEtoLBL().setText("Email Form For Sending to " +mGUI.getFvalue());
                 Stage window = new Stage();
                 VBox gvbox2 = sbcreateemail;
 
@@ -674,15 +673,19 @@ public class SBController
                     String eport = "587";
                     String emailFrom = "amed55@live.com";
                     String epassword = "chiodos5";
-
+                      Database emaildb = Database.getSingletonOfdatabase();
+                      Connection EmailConn = emaildb.getConn();
+                      Statement emailstmt = EmailConn.createStatement();
+                      ResultSet emailRS = emailstmt.executeQuery("SELECT email from student where username = '"+mGUI.getFvalue()+"'");
+                      emailRS.next();
                     // message info
-                    String emailTo = sbcreateemail.getEtoTF().getText();
+                    String emailTo = emailRS.getString("email");
                     String esubject = sbcreateemail.getEsubTF().getText();
                     String emessage = sbcreateemail.getEmessageTF().getText();
 
                     // attachments
                     String[] eattachFiles = new String[1];
-                    eattachFiles[0] = sbcreateemail.getFileTF().getText();
+                    
 
                     //attachFiles[2] = "e:/Test/Video.mp4";
                     // CC emails
@@ -691,7 +694,7 @@ public class SBController
                         ""
                     };
                     EmailAttachmentSender.sendEmailWithAttachments(host, eport, emailFrom, epassword, emailTo,
-                            esubject, emessage, eattachFiles);
+                            esubject, emessage);
                     System.out.println("Email sent.");
                 } catch (Exception ex)
                 {
@@ -838,7 +841,138 @@ public class SBController
             }
         }
         );
+        
+           mGUI.getFriendSearchBTN().setOnAction(
+                new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Stage window = new Stage();
 
+                BorderPane root = new BorderPane();
+                root.setCenter(sbaf);
+
+                Scene scene3 = new Scene(root, 500, 200);
+
+                window.setTitle("Study Buddy");
+
+                window.setScene(scene3);
+                window.show();
+                ;
+            }
+        }
+        );
+        
+        
+        
+        
+        
+        
+        
+
+        
+              mGUI.getDisplayallGroupBTN().setOnAction(
+                new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Stage window = new Stage();
+
+                BorderPane root = new BorderPane();
+                
+                
+                
+                
+                
+                
+                
+                
+     
+                
+                
+                
+                 Database mydb4 = Database.getSingletonOfdatabase();
+
+                            try
+                            {
+
+                                Connection conn4 = mydb4.getConn();
+                                Statement mystmt4 = conn4.createStatement();
+                                ResultSet myrs4 = mystmt4.executeQuery("SELECT * FROM studygroup");
+                                
+                                //cleaning the observable list for groups
+                                System.out.println("olist has "+olist2.size()+" elements");
+                                olist.remove(0, olist2.size()-1);
+                                System.out.println("now it has "+olist2.size()+" elements");
+                              
+                                while (myrs4.next())
+                                {
+                                    System.out.println(myrs4.getString("groupname"));
+                                    int gid = myrs4.getInt("groupid");
+                                    System.out.println(gid);
+                                    String gname = myrs4.getString("groupname");
+                                    String cname = myrs4.getString("coursename");
+                                    String dow = myrs4.getString("daysofweek");
+                                    int cid = myrs4.getInt("course_id");
+                                    System.out.println("my int is " + gid);
+                                    Group gr = new Group(gname, cname, dow, cid);
+                                  
+
+                gdm1.setGroup(gr);
+
+                                   agGUI.getGroupname().setCellValueFactory(
+                                            new PropertyValueFactory<Group, String>("gname"));
+
+                                
+
+                                   agGUI.getGroupsub().setCellValueFactory(
+                                            new PropertyValueFactory<Group, String>("gsubject"));
+
+                                   agGUI.getGroupinst().setCellValueFactory(
+                                            new PropertyValueFactory<Group, String>("daysofweek"));
+
+                                 
+
+                                   
+
+                                    olist2.add(gr);
+                                   agGUI.getAlltable().setItems(olist2);
+                                }
+                                System.out.println("now olist hast "+olist2.size()+" elements");
+                            
+                                
+
+                            } catch (Exception e)
+                            {
+                                e.printStackTrace();
+                            }
+
+                root.setCenter(agGUI);
+
+                Scene scene3 = new Scene(root, 500, 200);
+
+                window.setTitle("Study Buddy");
+
+                window.setScene(scene3);
+                window.show();
+                ;
+            }
+        }
+        );
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
           mGUI.getViewGroupInfoBTN().setOnAction(
@@ -938,8 +1072,130 @@ public class SBController
         );
         
         
+       agGUI.getShowgroupinfo().setOnAction(
+                new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Stage window = new Stage();
+
+                BorderPane root = new BorderPane();
+                
+                  giGUI.getMemlist().getItems().clear();
+                     try
+                            {
+                                Database mydb4 = Database.getSingletonOfdatabase();
+                  
+                                
+                                Connection Conn = mydb4.getConn();
+                                Statement stmt = Conn.createStatement();
+                                
+                                ResultSet myrs2 = stmt.executeQuery("SELECT distinct username,major from student,belong,studygroup where groupname='"+agGUI.getAvalue()+"'and group_id = groupid and studentid=student_id");
+                                
+                               
+                                int groupcount = 0; 
+                                int cscount = 0;
+                                int cmpecount = 0;
+                                int artcount = 0; 
+                                int engcount = 0; 
+                                int mathcount = 0; 
+                                while (myrs2.next())
+                                {
+                                    System.out.println("groupusername = " + myrs2.getString("username"));
+                          
+                                      
+                                   groupcount++; 
+                                  giGUI.getMemlist().getItems().add(myrs2.getString("username"));
+                                  
+                                  if(myrs2.getString("major").equals("CSCI"))
+                                  {
+                                     cscount++;
+                                      
+                                  }
+                                    if(myrs2.getString("major").equals("ENG"))
+                                  {
+                                    engcount++;
+                                      
+                                  }
+                                      if(myrs2.getString("major").equals("MATH"))
+                                  {
+                                    mathcount++; 
+                                      
+                                  }
+                                    
+                                         if(myrs2.getString("major").equals("ART"))
+                                  {
+                                    artcount++; 
+                                      
+                                  }
+                                         
+                                              if(myrs2.getString("major").equals("CMPE"))
+                                  {
+                                    cmpecount++; 
+                                      
+                                  }       
+                                         
+                                         
+                                    
+                                }
+                      
+                             giGUI.getPieChartData().get(0).setPieValue(cscount);
+                             giGUI.getPieChartData().get(1).setPieValue(artcount);
+                             giGUI.getPieChartData().get(2).setPieValue(cmpecount);
+                             giGUI.getPieChartData().get(3).setPieValue(mathcount);
+                             giGUI.getPieChartData().get(4).setPieValue(engcount);
+
+                            } catch (Exception e)
+                            {
+                                e.printStackTrace();
+                            }
+                
+                
+                
+                
+                
+                root.setCenter(giGUI);
+
+                Scene scene3 = new Scene(root, 500,800);
+
+                window.setTitle("Study Buddy");
+
+                window.setScene(scene3);
+                window.show();
+                ;
+            }
+        }
+        );
         
         
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
         
         
         
@@ -1033,6 +1289,39 @@ public class SBController
             }
         }
         );
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
     }
 

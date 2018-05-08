@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 
 /**
  *
@@ -143,10 +145,11 @@ public class SBNewEmailForm extends VBox{
         this.eSubmitBTN = eSubmitBTN;
     }
     
-    private Label etoLBL = new Label ("Email To:");
+    private Label etoLBL = new Label ("");
     private Label esub = new Label ("Email Subject");
      private Label emessage = new Label ("Email Message");
       private Label fileLBL = new Label ("Please enter filename you wish to send");
+ 
      
   
    
@@ -167,6 +170,7 @@ public class SBNewEmailForm extends VBox{
         
               this.setStyle("-fx-text-fill: white;");
        etoLBL.setStyle("-fx-text-fill: white;");
+       etoLBL.setFont(Font.font("Times New Roman", FontPosture.REGULAR, 20));
       esub.setStyle("-fx-text-fill: white;");
         emessage.setStyle("-fx-text-fill: white;");
         fileLBL.setStyle("-fx-text-fill: white;");
@@ -178,7 +182,7 @@ public class SBNewEmailForm extends VBox{
           emessageTF.setMaxSize(300,20);
           fileTF.setMaxSize(300,20);
           
-         this.getChildren().addAll(etoLBL,etoTF,esub,esubTF,emessage,emessageTF, eSubmitBTN);
+         this.getChildren().addAll(etoLBL,esub,esubTF,emessage,emessageTF, eSubmitBTN);
          
          
      }
