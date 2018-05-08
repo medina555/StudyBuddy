@@ -92,9 +92,8 @@ public class GroupInfoGUI extends GridPane {
       
        private Label grouplabel = new Label ("test");
       public GroupInfoGUI()
-      {   this.setStyle("-fx-background-image: url('sblogin1.jpg')");
-         grouplabel.setStyle("-fx-text-fill: white;");
-        
+      {
+          this.setStyle("-fx-background-color: #80e5ff");
              chart.setTitle("Students by Major");
           this.addRow(1,grouplabel);
           this.addRow(2,memlist);

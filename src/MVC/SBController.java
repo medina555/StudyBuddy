@@ -860,7 +860,7 @@ public class SBController
                                 Connection Conn = mydb4.getConn();
                                 Statement stmt = Conn.createStatement();
                                 
-                                ResultSet myrs2 = stmt.executeQuery("SELECT distinct username,major from student,belong,studygroup where groupname='"+mGUI.getGvalue()+"'and group_id = groupid and studentid=student_id and studentid!='"+currentUserId+"'");
+                                ResultSet myrs2 = stmt.executeQuery("SELECT distinct username,major from student,belong,studygroup where groupname='"+mGUI.getGvalue()+"'and group_id = groupid and studentid=student_id");
                                 
                                
                                 int groupcount = 0; 
