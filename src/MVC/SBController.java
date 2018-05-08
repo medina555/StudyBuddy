@@ -178,7 +178,7 @@ public class SBController
             {
                 boolean found = false;
                 Database mydb = Database.getSingletonOfdatabase();
-
+            
                 try
                 {
 
@@ -446,6 +446,8 @@ public class SBController
                 olist = FXCollections.observableArrayList(gdm1.getGrouplist());
                 ListView<String> newlist = new ListView();
                 mGUI.setSlist(newlist);
+               
+                       
                 currentuser = "";
 
                 primaryStage.setScene(myscene);
