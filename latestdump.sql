@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: studybuddy1
+-- Host: 127.0.0.1    Database: studybuddy
 -- ------------------------------------------------------
 -- Server version	5.7.21-log
 
@@ -23,17 +23,17 @@ DROP TABLE IF EXISTS `appointment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appointment` (
-  `Appointmentid` int(11) NOT NULL,
+  `Appointmentid` int(11) NOT NULL AUTO_INCREMENT,
   `place` varchar(45) NOT NULL,
   `date` varchar(45) NOT NULL,
   `groupid` int(11) NOT NULL,
   `studentid` int(11) NOT NULL,
   PRIMARY KEY (`Appointmentid`),
-  KEY `studentid_idx` (`studentid`),
   KEY `groupid_idx` (`groupid`),
+  KEY `stuid_idx` (`studentid`),
   CONSTRAINT `groupid` FOREIGN KEY (`groupid`) REFERENCES `studygroup` (`groupid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `idstudent` FOREIGN KEY (`studentid`) REFERENCES `student` (`studentid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `stuid` FOREIGN KEY (`studentid`) REFERENCES `student` (`studentid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,9 +57,9 @@ CREATE TABLE `belong` (
   `student_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   PRIMARY KEY (`student_id`,`group_id`),
-  KEY `group_id_idx` (`group_id`),
-  CONSTRAINT `group_id` FOREIGN KEY (`group_id`) REFERENCES `studygroup` (`groupid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `student_id` FOREIGN KEY (`student_id`) REFERENCES `student` (`studentid`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `gid_idx` (`group_id`),
+  CONSTRAINT `gid` FOREIGN KEY (`group_id`) REFERENCES `studygroup` (`groupid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `sid` FOREIGN KEY (`student_id`) REFERENCES `student` (`studentid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -69,7 +69,7 @@ CREATE TABLE `belong` (
 
 LOCK TABLES `belong` WRITE;
 /*!40000 ALTER TABLE `belong` DISABLE KEYS */;
-INSERT INTO `belong` VALUES (2,1),(3,1),(4,1);
+INSERT INTO `belong` VALUES (2,1),(3,1),(4,1),(5,1),(9,1),(10,1),(3,2),(2,3);
 /*!40000 ALTER TABLE `belong` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,9 +84,10 @@ CREATE TABLE `contains` (
   `studentid` int(11) NOT NULL,
   `courseid` int(11) NOT NULL,
   PRIMARY KEY (`studentid`,`courseid`),
-  KEY `courseid_idx` (`courseid`),
-  CONSTRAINT `cid` FOREIGN KEY (`courseid`) REFERENCES `course` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `sid` FOREIGN KEY (`studentid`) REFERENCES `student` (`studentid`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `cid_idx` (`courseid`),
+  KEY `cid1_idx` (`courseid`),
+  CONSTRAINT `cid1` FOREIGN KEY (`courseid`) REFERENCES `course` (`courseid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `stuid1` FOREIGN KEY (`studentid`) REFERENCES `student` (`studentid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,12 +109,12 @@ DROP TABLE IF EXISTS `course`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `course` (
-  `courseid` int(11) NOT NULL,
+  `courseid` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `instructor` varchar(45) NOT NULL,
   `times` varchar(45) NOT NULL,
   PRIMARY KEY (`courseid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +123,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'software engineering','Mahmoud Quweider','TTh'),(2,'College Alebra','Dr.Riahi','MW'),(3,'Art Aprecciation','Mrs.Sanchez','TTh');
+INSERT INTO `course` VALUES (1,'software engineering','Mahmoud Quweider','TTh'),(2,'American Literature','Mark Smith','MW'),(3,'Art Appreciation','Jackie Garcia','Tth'),(4,'College Algebra','John White','MW');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,17 +135,18 @@ DROP TABLE IF EXISTS `document`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `document` (
-  `documentId` int(11) NOT NULL,
+  `documentId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `content` longblob NOT NULL,
   `groupid` int(11) NOT NULL,
   `studentid` int(11) NOT NULL,
   PRIMARY KEY (`documentId`),
-  KEY `studentid_idx` (`studentid`),
   KEY `groupid_idx` (`groupid`),
-  CONSTRAINT `groupid2` FOREIGN KEY (`groupid`) REFERENCES `studygroup` (`groupid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `studentid` FOREIGN KEY (`studentid`) REFERENCES `student` (`studentid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `group_id2_idx` (`groupid`),
+  KEY `sid2_idx` (`studentid`),
+  CONSTRAINT `group_id2` FOREIGN KEY (`groupid`) REFERENCES `studygroup` (`groupid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `sid2` FOREIGN KEY (`studentid`) REFERENCES `student` (`studentid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,9 +170,9 @@ CREATE TABLE `friend` (
   `idFriend1` int(11) NOT NULL,
   `idFriend2` int(11) NOT NULL,
   PRIMARY KEY (`idFriend1`,`idFriend2`),
-  KEY `idFriend2_idx` (`idFriend2`),
-  CONSTRAINT `idFriend1` FOREIGN KEY (`idFriend1`) REFERENCES `student` (`studentid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `idFriend2` FOREIGN KEY (`idFriend2`) REFERENCES `student` (`studentid`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_friend2_idx` (`idFriend2`),
+  CONSTRAINT `fk_friend1` FOREIGN KEY (`idFriend1`) REFERENCES `student` (`studentid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_friend2` FOREIGN KEY (`idFriend2`) REFERENCES `student` (`studentid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -180,7 +182,7 @@ CREATE TABLE `friend` (
 
 LOCK TABLES `friend` WRITE;
 /*!40000 ALTER TABLE `friend` DISABLE KEYS */;
-INSERT INTO `friend` VALUES (2,1),(2,3);
+INSERT INTO `friend` VALUES (2,1),(1,2),(1,3),(2,3),(1,4),(2,4),(3,4),(2,5),(2,9),(2,10);
 /*!40000 ALTER TABLE `friend` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +194,7 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `student` (
-  `studentid` int(11) NOT NULL,
+  `studentid` int(11) NOT NULL AUTO_INCREMENT,
   `firstname` varchar(45) NOT NULL,
   `lastname` varchar(45) NOT NULL,
   `major` varchar(45) NOT NULL,
@@ -201,7 +203,7 @@ CREATE TABLE `student` (
   `username` varchar(45) NOT NULL,
   `sbpassword` varchar(45) NOT NULL,
   PRIMARY KEY (`studentid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +212,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'marco','olivares','CMPE','UTRGV','marco.olivares01@utrgv.edu','marco','marco123'),(2,'andrew','medina','CSCI','STC','andrew.medina02@utrgv.edu','andrew','andrew123'),(3,'mauricio','azcona','CSCI','TSC','mauricio.azcona01@utrgv.edu','mauricio','mauricio123'),(4,'jahaira','alaniz','CSCI','UTRGV','jahaira.alaniz01@utrgv.edu','jahaira','jahaira123');
+INSERT INTO `student` VALUES (1,'marco','olivares','CMPE','STC','marco.olivares01@utrgv.edu','marco','marco123'),(2,'andrew','medina','MATH','UTRGV','andrew.medina02@utrgv.edu','andrew','andrew123'),(3,'mauricio','azcona','ART','TSC','mauricio.azcona01@utrgv.edu','mauricio','mauricio123'),(4,'jahaira','alaniz','CSCI','UTRGV','jahaira.alaniz01@utrgv.edu','jahaira','jahaira123'),(5,'pedro','martinez','CSCI','UTRGV','pedro.martinez01@utrgv.edu','pedro','pedro123'),(9,'t','t','ART','UTRGV','t@utrgv.edu','t','t'),(10,'mat','mat','ENG','STC','mat@utrgv.edu','mat','mat');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,15 +224,15 @@ DROP TABLE IF EXISTS `studygroup`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `studygroup` (
-  `groupid` int(11) NOT NULL,
+  `groupid` int(11) NOT NULL AUTO_INCREMENT,
   `groupname` varchar(45) NOT NULL,
   `coursename` varchar(45) NOT NULL,
   `daysofweek` varchar(45) NOT NULL,
   `course_id` int(11) NOT NULL,
   PRIMARY KEY (`groupid`),
-  KEY `course_id_idx` (`course_id`),
-  CONSTRAINT `course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `courseid_idx` (`course_id`),
+  CONSTRAINT `courseid` FOREIGN KEY (`course_id`) REFERENCES `course` (`courseid`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +241,7 @@ CREATE TABLE `studygroup` (
 
 LOCK TABLES `studygroup` WRITE;
 /*!40000 ALTER TABLE `studygroup` DISABLE KEYS */;
-INSERT INTO `studygroup` VALUES (1,'omnibus','Software engineering','TTh',1);
+INSERT INTO `studygroup` VALUES (1,'omnibus','Software engineering','TTh',1),(2,'Test group','Don\'t know','MW',2),(3,'The Coders','Software Engineering','MW',1),(4,'mygroup2','College Algebra','mw',4);
 /*!40000 ALTER TABLE `studygroup` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -252,4 +254,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-01  4:59:40
+-- Dump completed on 2018-05-08  7:19:47
