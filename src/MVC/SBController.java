@@ -673,8 +673,8 @@ public class SBController
                 {
                     String host = "smtp.outlook.com";
                     String eport = "587";
-                    String emailFrom = "amed55@live.com";
-                    String epassword = "chiodos5";
+                    String emailFrom = "studybuddyproject55@outlook.com";
+                    String epassword = "studybuddy55";
                       Database emaildb = Database.getSingletonOfdatabase();
                       Connection EmailConn = emaildb.getConn();
                       Statement emailstmt = EmailConn.createStatement();
